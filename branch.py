@@ -4,7 +4,7 @@ import service_pb2_grpc
 import service_pb2
 
 
-class Branch(service_pb2_grpc.RPCServicer):
+class Branch(service_pb2_grpc.BankingServiceServicer):
 
     def __init__(self, id, balance, branches):
         # unique ID of the Branch
