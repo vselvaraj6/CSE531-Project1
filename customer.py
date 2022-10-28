@@ -1,7 +1,7 @@
 import grpc
 import time
-import service_pb2_grpc
-import service_pb2
+import generated.service.service_pb2_grpc
+import generated.service.service_pb2
 
 class Customer:
     def __init__(self, id, events):
@@ -14,17 +14,21 @@ class Customer:
         # pointer for the stub
         self.stub = None
 
+    def __str__(self) -> str:
+        return "id: {0}, events:{1}".format(self.id,self.events)   
+
     # TODO: students are expected to create the Customer stub
     def createStub(self):
-        pass
+        port = 50050 + self.id
+        with grpc.insecure_channel('localhost:'+str(port)) as channel:
+            self.stub = service_pb2_grpc.BranchStub(channel)
 
     # TODO: students are expected to send out the events to the Bank
     def executeEvents(self):
-        pass
+        for event in self.events:
+            interface = event.get('interface')
+            print(interface)
+            
 
-    def call_deposit(self, money):
-        with grpc.insecure_channel('localhost:50051') as channel:
-            stub = service_pb2_grpc.BranchStub(channel)
-            response = stub.Deposit(service_pb2.DepositInput(id=self.id, money=money))
-        print("Money deposited to branch: " + response.message)   
-    
+        
+     

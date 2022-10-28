@@ -3,12 +3,12 @@
 To generate interface file:
 
 ``` bash
-protoc protos/service.proto --python_out . --proto_path generated=.
+protoc proto/service.proto --grpc_python_out=./generated --python_out=./generated --proto_path=./proto
 ```
 
 To generate grpc file:
 ```
-python3 -m grpc_tools.protoc -I./protos --python_out=. --grpc_python_out=. protos/service.proto
+python3 -m grpc_tools.protoc -I proto --python_out=./generated --grpc_python_out=./generated proto/service.proto
 ```
 
 
