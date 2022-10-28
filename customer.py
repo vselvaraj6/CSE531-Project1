@@ -22,9 +22,9 @@ class Customer:
     def executeEvents(self):
         pass
 
-    def run():
+    def call_deposit(self, money):
         with grpc.insecure_channel('localhost:50051') as channel:
-            stub = service_pb2_grpc.BankingServiceStub(channel)
-            response = stub.UpdateTransaction(service_pb2.ClientInput(name='John', greeting = "Yo"))
-        print("Greeter client received following from server: " + response.message)   
-    run()
+            stub = service_pb2_grpc.BranchStub(channel)
+            response = stub.Deposit(service_pb2.DepositInput(id=self.id, money=money))
+        print("Money deposited to branch: " + response.message)   
+    

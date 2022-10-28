@@ -11,33 +11,28 @@ from google.protobuf import symbol_database as _symbol_database
 _sym_db = _symbol_database.Default()
 
 
+from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\rservice.proto\"C\n\x0b\x43lientInput\x12\x1b\n\x08\x63ustomer\x18\x01 \x03(\x0b\x32\t.Customer\x12\x17\n\x06\x42ranch\x18\x02 \x03(\x0b\x32\x07.Branch\"5\n\x0cServerOutput\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x19\n\x04recv\x18\x02 \x01(\x0b\x32\x0b.OutputType\"D\n\nOutputType\x12\x1d\n\tinterface\x18\x01 \x01(\x0e\x32\n.Interface\x12\x17\n\x06result\x18\x02 \x01(\x0e\x32\x07.Result\"I\n\x08\x43ustomer\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x1a\n\x04type\x18\x02 \x01(\x0e\x32\x0c.ProcessType\x12\x15\n\x05\x65vent\x18\x03 \x03(\x0b\x32\x06.Event\"A\n\x06\x42ranch\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x1a\n\x04type\x18\x02 \x01(\x0e\x32\x0c.ProcessType\x12\x0f\n\x07\x62\x61lance\x18\x03 \x01(\x03\"A\n\x05\x45vent\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x1d\n\tInterface\x18\x02 \x01(\x0e\x32\n.Interface\x12\r\n\x05money\x18\x03 \x01(\x03*1\n\tInterface\x12\t\n\x05QUERY\x10\x00\x12\x0b\n\x07\x44\x45POSIT\x10\x01\x12\x0c\n\x08WITHDRAW\x10\x02*\'\n\x0bProcessType\x12\x0c\n\x08\x43USTOMER\x10\x00\x12\n\n\x06\x42RANCH\x10\x01*\"\n\x06Result\x12\x0b\n\x07SUCCESS\x10\x00\x12\x0b\n\x07\x46\x41ILURE\x10\x01\x32\x44\n\x0e\x42\x61nkingService\x12\x32\n\x11UpdateTransaction\x12\x0c.ClientInput\x1a\r.ServerOutput\"\x00\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\rservice.proto\x1a\x1bgoogle/protobuf/empty.proto\"\x18\n\nQueryInput\x12\n\n\x02id\x18\x01 \x01(\x05\"\x1c\n\x0bQueryOutput\x12\r\n\x05money\x18\x01 \x01(\x03\")\n\x0c\x44\x65positInput\x12\n\n\x02id\x18\x01 \x01(\x05\x12\r\n\x05money\x18\x02 \x01(\x03\"*\n\rWithdrawInput\x12\n\n\x02id\x18\x01 \x01(\x05\x12\r\n\x05money\x18\x02 \x01(\x03\"3\n\x16PropogateWithdrawInput\x12\n\n\x02id\x18\x01 \x01(\x05\x12\r\n\x05money\x18\x02 \x01(\x03\"2\n\x15PropogateDepositInput\x12\n\n\x02id\x18\x01 \x01(\x05\x12\r\n\x05money\x18\x02 \x01(\x03\x32\xa6\x02\n\x06\x42ranch\x12$\n\x05Query\x12\x0b.QueryInput\x1a\x0c.QueryOutput\"\x00\x12\x32\n\x07\x44\x65posit\x12\r.DepositInput\x1a\x16.google.protobuf.Empty\"\x00\x12\x34\n\x08Withdraw\x12\x0e.WithdrawInput\x1a\x16.google.protobuf.Empty\"\x00\x12\x46\n\x11PropogateWithdraw\x12\x17.PropogateWithdrawInput\x1a\x16.google.protobuf.Empty\"\x00\x12\x44\n\x10PropogateDeposit\x12\x16.PropogateDepositInput\x1a\x16.google.protobuf.Empty\"\x00\x62\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'service_pb2', globals())
 if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
-  _INTERFACE._serialized_start=420
-  _INTERFACE._serialized_end=469
-  _PROCESSTYPE._serialized_start=471
-  _PROCESSTYPE._serialized_end=510
-  _RESULT._serialized_start=512
-  _RESULT._serialized_end=546
-  _CLIENTINPUT._serialized_start=17
-  _CLIENTINPUT._serialized_end=84
-  _SERVEROUTPUT._serialized_start=86
-  _SERVEROUTPUT._serialized_end=139
-  _OUTPUTTYPE._serialized_start=141
-  _OUTPUTTYPE._serialized_end=209
-  _CUSTOMER._serialized_start=211
-  _CUSTOMER._serialized_end=284
-  _BRANCH._serialized_start=286
-  _BRANCH._serialized_end=351
-  _EVENT._serialized_start=353
-  _EVENT._serialized_end=418
-  _BANKINGSERVICE._serialized_start=548
-  _BANKINGSERVICE._serialized_end=616
+  _QUERYINPUT._serialized_start=46
+  _QUERYINPUT._serialized_end=70
+  _QUERYOUTPUT._serialized_start=72
+  _QUERYOUTPUT._serialized_end=100
+  _DEPOSITINPUT._serialized_start=102
+  _DEPOSITINPUT._serialized_end=143
+  _WITHDRAWINPUT._serialized_start=145
+  _WITHDRAWINPUT._serialized_end=187
+  _PROPOGATEWITHDRAWINPUT._serialized_start=189
+  _PROPOGATEWITHDRAWINPUT._serialized_end=240
+  _PROPOGATEDEPOSITINPUT._serialized_start=242
+  _PROPOGATEDEPOSITINPUT._serialized_end=292
+  _BRANCH._serialized_start=295
+  _BRANCH._serialized_end=589
 # @@protoc_insertion_point(module_scope)

@@ -1,14 +1,14 @@
 # BankingSystem
 
-To generate service files:
+To generate interface file:
 
 ``` bash
-python3 -m grpc_tools.protoc \
-        -I . \
-        --proto_path=. \
-        --python_out=. \
-        --grpc_python_out=. \
-        ./service.proto
+protoc protos/service.proto --python_out . --proto_path generated=.
+```
+
+To generate grpc file:
+```
+python3 -m grpc_tools.protoc -I./protos --python_out=. --grpc_python_out=. protos/service.proto
 ```
 
 

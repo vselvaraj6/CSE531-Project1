@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+service Branch {
+    rpc Query(QueryInput) returns (QueryOutput) {}
+    rpc Deposit(DepositInput) returns (google.protobuf.Empty) {}
+    rpc Withdraw(WithdrawInput) returns (google.protobuf.Empty) {}
+    rpc PropogateWithdraw(PropogateWithdrawInput) returns (google.protobuf.Empty) {}
+    rpc PropogateDeposit(PropogateDepositInput) returns (google.protobuf.Empty) {}
+}
+
+message QueryInput {
+    int32 id = 1;
+}
+
+message QueryOutput {
+    int64 money = 1;
+}
+
+message DepositInput {
+    int32 id = 1;
+    int64 money = 2;
+}
+
+message WithdrawInput {
+    int32 id = 1;
+    int64 money = 2;
+}
+
+message PropogateWithdrawInput {
+    int32 id = 1;
+    int64 money = 2;
+}
+
+message PropogateDepositInput {
+    int32 id = 1;
+    int64 money = 2;
+}
+
