@@ -25,11 +25,13 @@ class BranchServicer(service_pb2_grpc.BranchServicer):
         
     # TODO: students are expected to process requests from both Client and Branch
     def MsgDelivery(self,request, context):
-
         print("in msg delivery")
-        print(request)
-        output = service_pb2.QueryOutput()
-        output.money = self.balance
+       
+        print('interface',  request.events[0].interface)
+        if request.events[0].interface == 1:
+            output = service_pb2.Response()
+            output.id = self.id
+            print('processing queruy interface')
         return output
 
                

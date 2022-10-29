@@ -15,7 +15,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\rservice.proto\"I\n\x07Request\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x13\n\x04type\x18\x02 \x01(\x0e\x32\x05.Type\x12\x1d\n\x06\x65vents\x18\x03 \x03(\x0b\x32\r.EventRequest\"H\n\x0c\x45ventRequest\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x1d\n\tinterface\x18\x02 \x01(\x0e\x32\n.Interface\x12\r\n\x05money\x18\x03 \x01(\x05\"V\n\rEventResponse\x12\x1d\n\tinterface\x18\x01 \x01(\x0e\x32\n.Interface\x12\r\n\x05money\x18\x02 \x01(\x05\x12\x17\n\x06result\x18\x03 \x01(\x0e\x32\x07.Result\"4\n\x08Response\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x1c\n\x04recv\x18\x02 \x03(\x0b\x32\x0e.EventResponse* \n\x04Type\x12\x0c\n\x08\x43USTOMER\x10\x00\x12\n\n\x06\x42RANCH\x10\x01*\"\n\x06Result\x12\x0b\n\x07SUCCESS\x10\x00\x12\x0b\n\x07\x46\x41ILURE\x10\x01*`\n\tInterface\x12\x0c\n\x08WITHDRAW\x10\x00\x12\t\n\x05QUERY\x10\x01\x12\x0b\n\x07\x44\x45POSIT\x10\x02\x12\x15\n\x11PROPOGATE_DEPOSIT\x10\x03\x12\x16\n\x12PROPOGATE_WITHDRAW\x10\x04\x32,\n\x06\x42ranch\x12\"\n\x0bMsgDelivery\x12\x08.Request\x1a\t.Responseb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\rservice.proto\"I\n\x07Request\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x13\n\x04type\x18\x02 \x01(\x0e\x32\x05.Type\x12\x1d\n\x06\x65vents\x18\x03 \x03(\x0b\x32\r.EventRequest\"H\n\x0c\x45ventRequest\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x1d\n\tinterface\x18\x02 \x01(\x0e\x32\n.Interface\x12\r\n\x05money\x18\x03 \x01(\x05\"V\n\rEventResponse\x12\x1d\n\tinterface\x18\x01 \x01(\x0e\x32\n.Interface\x12\r\n\x05money\x18\x02 \x01(\x05\x12\x17\n\x06result\x18\x03 \x01(\x0e\x32\x07.Result\"4\n\x08Response\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x1c\n\x04recv\x18\x02 \x03(\x0b\x32\x0e.EventResponse* \n\x04Type\x12\x0c\n\x08\x63ustomer\x10\x00\x12\n\n\x06\x62ranch\x10\x01*\"\n\x06Result\x12\x0b\n\x07success\x10\x00\x12\x0b\n\x07\x66\x61ilure\x10\x01*`\n\tInterface\x12\x0c\n\x08withdraw\x10\x00\x12\t\n\x05query\x10\x01\x12\x0b\n\x07\x64\x65posit\x10\x02\x12\x15\n\x11propogate_deposit\x10\x03\x12\x16\n\x12propogate_withdraw\x10\x04\x32,\n\x06\x42ranch\x12\"\n\x0bMsgDelivery\x12\x08.Request\x1a\t.Responseb\x06proto3')
 
 _TYPE = DESCRIPTOR.enum_types_by_name['Type']
 Type = enum_type_wrapper.EnumTypeWrapper(_TYPE)
@@ -23,15 +23,15 @@ _RESULT = DESCRIPTOR.enum_types_by_name['Result']
 Result = enum_type_wrapper.EnumTypeWrapper(_RESULT)
 _INTERFACE = DESCRIPTOR.enum_types_by_name['Interface']
 Interface = enum_type_wrapper.EnumTypeWrapper(_INTERFACE)
-CUSTOMER = 0
-BRANCH = 1
-SUCCESS = 0
-FAILURE = 1
-WITHDRAW = 0
-QUERY = 1
-DEPOSIT = 2
-PROPOGATE_DEPOSIT = 3
-PROPOGATE_WITHDRAW = 4
+customer = 0
+branch = 1
+success = 0
+failure = 1
+withdraw = 0
+query = 1
+deposit = 2
+propogate_deposit = 3
+propogate_withdraw = 4
 
 
 _REQUEST = DESCRIPTOR.message_types_by_name['Request']

@@ -16,8 +16,6 @@ with open(input_file, 'r') as f:
 customers = []
 for customer_event in customer_events:
     customer = Customer(customer_event.get('id'),customer_event.get('events'))
-  #  print(customer)
-    customers.append(customer)
-    customer.stub = customer.createStub()
     customer.executeEvents()
+    customers.append(customer)
   

@@ -31,19 +31,19 @@ message Response {
 }
 
 enum Type {
-    CUSTOMER=0;
-    BRANCH=1;
+    customer=0;
+    branch=1;
 }
 
 enum Result {
-    SUCCESS=0;
-    FAILURE=1;
+    success=0;
+    failure=1;
 }
 
 enum Interface {
-    WITHDRAW=0;
-    QUERY=1;
-    DEPOSIT=2;
-    PROPOGATE_DEPOSIT=3;
-    PROPOGATE_WITHDRAW=4;
+    withdraw=0;
+    query=1;
+    deposit=2;
+    propogate_deposit=3;
+    propogate_withdraw=4;
 }

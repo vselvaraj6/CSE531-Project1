@@ -1,6 +1,6 @@
 import json
 import sys
-from branch import Branch
+from branch import BranchServicer
 from multiprocessing import Process
 from concurrent import futures
 import service_pb2_grpc
@@ -19,7 +19,7 @@ with open(input_file, 'r') as f:
 def start_bank_process(id, balance, branches, port):
     GRPC_BIND_ADDR = '[::]:'+str(port)
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10), options=(('grpc.so_reuseport',0),))
-    service_pb2_grpc.add_BranchServicer_to_server(Branch(id=id,balance=balance,branches=branches), server)
+    service_pb2_grpc.add_BranchServicer_to_server(BranchServicer(id, balance, branches), server)
     server.add_insecure_port(GRPC_BIND_ADDR)
     server.start()
     print("gRPC Bank process started for ID" , id, "Listening on port",  GRPC_BIND_ADDR)
@@ -29,7 +29,7 @@ branch_processes = []
 port = 50051
 branches = []
 for branch_event in branch_events:
-    branch = Branch(branch_event.get('id'),branch_event.get('balance'),{})
+    branch = BranchServicer(branch_event.get('id'), branch_event.get('balance'), branches)
     print("invoking branch process ... ", branch.id)
     branch_process = Process(target=start_bank_process, args=(branch.id,branch.balance,branch.branches,port))
     branch_processes.append(branch_process)

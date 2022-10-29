@@ -2,6 +2,8 @@ import grpc
 import time
 import service_pb2_grpc
 import service_pb2
+import json
+import sys
 
 class Customer:
     def __init__(self, id, events):
@@ -19,21 +21,18 @@ class Customer:
 
     # TODO: students are expected to create the Customer stub
     def createStub(self):
-        port = 50050 + self.id
-        host = 'localhost:'+str(port)
-        print('Creating stub to connect to ', host)
-        with grpc.insecure_channel(host) as channel:
-            return service_pb2_grpc.BranchStub(channel)
+       pass
 
     # TODO: students are expected to send out the events to the Bank
     def executeEvents(self):
-        for event in self.events:
-            interface = event.get('interface')
+        port = 50050 + self.id
+        host = 'localhost:'+str(port)
+        print('Creating stub to connect to ', host)
+        request = service_pb2.Request(id=self.id, type='customer', events=self.events)
+        with grpc.insecure_channel(host) as channel:
+            self.stub = service_pb2_grpc.BranchStub(channel)
+            response = self.stub.MsgDelivery(request=request)
+            print(response)
+        channel.close()    
 
-            if(interface == 'query'):
-                port = 50050 + self.id
-                host = 'localhost:'+str(port)
-                print('Creating stub to connect to ', host)
-                query_inp = service_pb2.QueryInput(id=1)
-                output = self.stub.Query(query_inp)
-                print(output)
+  

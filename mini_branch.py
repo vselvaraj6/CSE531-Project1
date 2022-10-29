@@ -41,7 +41,7 @@ class BranchServicer(service_pb2_grpc.BranchServicer):
 def serve(id, balance, branches):
     GRPC_BIND_ADDR = "localhost:50051"
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10), options=(('grpc.so_reuseport',0),))
-    service_pb2_grpc.add_BranchServicer_to_server(BranchServicer(id, balance, branches), server)
+    service_pb2_grpc.add_BranchServicer_to_server(BranchServicer(), server)
     server.add_insecure_port(GRPC_BIND_ADDR)
     server.start()
     print("gRPC Bank process started for ID" , id, "Listening on port",  GRPC_BIND_ADDR)
