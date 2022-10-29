@@ -1,8 +1,8 @@
 
 from concurrent import futures
-import generated.service.service_pb2_grpc
+import service_pb2_grpc
 
-class Branch(generated.service.service_pb2_grpc.BranchServicer):
+class Branch(service_pb2_grpc.BranchServicer):
 
     def __init__(self, id, balance, branches):
         # unique ID of the Branch

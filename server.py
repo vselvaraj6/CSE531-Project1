@@ -3,7 +3,7 @@ import sys
 from branch import Branch
 from multiprocessing import Process
 from concurrent import futures
-import generated.service_pb2_grpc
+import service_pb2_grpc
 import grpc
 
 input_file = sys.argv[1]

@@ -1,7 +1,7 @@
 import grpc
 import time
-import generated.service.service_pb2_grpc
-import generated.service.service_pb2
+import service_pb2_grpc
+import service_pb2
 
 class Customer:
     def __init__(self, id, events):
