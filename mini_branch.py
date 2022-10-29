@@ -1,6 +1,7 @@
 
 from concurrent import futures
 import service_pb2_grpc
+import service_pb2
 import sys
 import json
 import grpc
@@ -28,6 +29,13 @@ class BranchServicer(service_pb2_grpc.BranchServicer):
     # TODO: students are expected to process requests from both Client and Branch
     def MsgDelivery(self,request, context):
         pass
+
+    def Query(self, request, context):
+        print("message recieved")
+        print(request)
+        op = service_pb2.QueryOutput()
+        op.money = 400
+        return op
 
 def serve(id, balance, branches):
     GRPC_BIND_ADDR = "localhost:50051"

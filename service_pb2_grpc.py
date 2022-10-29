@@ -15,27 +15,27 @@ class BranchStub(object):
             channel: A grpc.Channel.
         """
         self.Query = channel.unary_unary(
-                '/bank.Branch/Query',
+                '/Branch/Query',
                 request_serializer=service__pb2.QueryInput.SerializeToString,
                 response_deserializer=service__pb2.QueryOutput.FromString,
                 )
         self.Deposit = channel.unary_unary(
-                '/bank.Branch/Deposit',
+                '/Branch/Deposit',
                 request_serializer=service__pb2.DepositInput.SerializeToString,
                 response_deserializer=service__pb2.Output.FromString,
                 )
         self.Withdraw = channel.unary_unary(
-                '/bank.Branch/Withdraw',
+                '/Branch/Withdraw',
                 request_serializer=service__pb2.WithdrawInput.SerializeToString,
                 response_deserializer=service__pb2.Output.FromString,
                 )
         self.PropogateWithdraw = channel.unary_unary(
-                '/bank.Branch/PropogateWithdraw',
+                '/Branch/PropogateWithdraw',
                 request_serializer=service__pb2.PropogateWithdrawInput.SerializeToString,
                 response_deserializer=service__pb2.Output.FromString,
                 )
         self.PropogateDeposit = channel.unary_unary(
-                '/bank.Branch/PropogateDeposit',
+                '/Branch/PropogateDeposit',
                 request_serializer=service__pb2.PropogateDepositInput.SerializeToString,
                 response_deserializer=service__pb2.Output.FromString,
                 )
@@ -109,7 +109,7 @@ def add_BranchServicer_to_server(servicer, server):
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'bank.Branch', rpc_method_handlers)
+            'Branch', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
 
 
@@ -128,7 +128,7 @@ class Branch(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/bank.Branch/Query',
+        return grpc.experimental.unary_unary(request, target, '/Branch/Query',
             service__pb2.QueryInput.SerializeToString,
             service__pb2.QueryOutput.FromString,
             options, channel_credentials,
@@ -145,7 +145,7 @@ class Branch(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/bank.Branch/Deposit',
+        return grpc.experimental.unary_unary(request, target, '/Branch/Deposit',
             service__pb2.DepositInput.SerializeToString,
             service__pb2.Output.FromString,
             options, channel_credentials,
@@ -162,7 +162,7 @@ class Branch(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/bank.Branch/Withdraw',
+        return grpc.experimental.unary_unary(request, target, '/Branch/Withdraw',
             service__pb2.WithdrawInput.SerializeToString,
             service__pb2.Output.FromString,
             options, channel_credentials,
@@ -179,7 +179,7 @@ class Branch(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/bank.Branch/PropogateWithdraw',
+        return grpc.experimental.unary_unary(request, target, '/Branch/PropogateWithdraw',
             service__pb2.PropogateWithdrawInput.SerializeToString,
             service__pb2.Output.FromString,
             options, channel_credentials,
@@ -196,7 +196,7 @@ class Branch(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/bank.Branch/PropogateDeposit',
+        return grpc.experimental.unary_unary(request, target, '/Branch/PropogateDeposit',
             service__pb2.PropogateDepositInput.SerializeToString,
             service__pb2.Output.FromString,
             options, channel_credentials,
