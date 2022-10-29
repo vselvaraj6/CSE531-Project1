@@ -6,3 +6,12 @@ python3 -m grpc_tools.protoc -I proto --python_out=. --grpc_python_out=. proto/s
 ```
 
 
+To run server:
+```bash
+python3 server.py input.json
+```
+
+To run client:
+```bash
+python3 client.py input.json
+```
