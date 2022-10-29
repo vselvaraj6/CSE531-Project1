@@ -18,8 +18,7 @@ with open(input_file, 'r') as f:
 
 def start_bank_process(id, balance, branches, port):
     GRPC_BIND_ADDR = '[::]:'+str(port)
-    executor = futures.ThreadPoolExecutor(max_workers=1)
-    server = grpc.server(executor,)
+    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     service_pb2_grpc.add_BranchServicer_to_server(Branch(id=id,balance=balance,branches=branches), server)
     server.add_insecure_port(GRPC_BIND_ADDR)
     server.start()

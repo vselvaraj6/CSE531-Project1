@@ -2,7 +2,6 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 import service_pb2 as service__pb2
 
 
@@ -16,29 +15,29 @@ class BranchStub(object):
             channel: A grpc.Channel.
         """
         self.Query = channel.unary_unary(
-                '/Branch/Query',
+                '/bank.Branch/Query',
                 request_serializer=service__pb2.QueryInput.SerializeToString,
                 response_deserializer=service__pb2.QueryOutput.FromString,
                 )
         self.Deposit = channel.unary_unary(
-                '/Branch/Deposit',
+                '/bank.Branch/Deposit',
                 request_serializer=service__pb2.DepositInput.SerializeToString,
-                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                response_deserializer=service__pb2.Output.FromString,
                 )
         self.Withdraw = channel.unary_unary(
-                '/Branch/Withdraw',
+                '/bank.Branch/Withdraw',
                 request_serializer=service__pb2.WithdrawInput.SerializeToString,
-                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                response_deserializer=service__pb2.Output.FromString,
                 )
         self.PropogateWithdraw = channel.unary_unary(
-                '/Branch/PropogateWithdraw',
+                '/bank.Branch/PropogateWithdraw',
                 request_serializer=service__pb2.PropogateWithdrawInput.SerializeToString,
-                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                response_deserializer=service__pb2.Output.FromString,
                 )
         self.PropogateDeposit = channel.unary_unary(
-                '/Branch/PropogateDeposit',
+                '/bank.Branch/PropogateDeposit',
                 request_serializer=service__pb2.PropogateDepositInput.SerializeToString,
-                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                response_deserializer=service__pb2.Output.FromString,
                 )
 
 
@@ -46,31 +45,36 @@ class BranchServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def Query(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Query branch 
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def Deposit(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Deposit to branch
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def Withdraw(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Withdraw from branch
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def PropogateWithdraw(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Propogate withrdaw to other banches
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def PropogateDeposit(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Propogate deposit to other banches
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
@@ -86,26 +90,26 @@ def add_BranchServicer_to_server(servicer, server):
             'Deposit': grpc.unary_unary_rpc_method_handler(
                     servicer.Deposit,
                     request_deserializer=service__pb2.DepositInput.FromString,
-                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                    response_serializer=service__pb2.Output.SerializeToString,
             ),
             'Withdraw': grpc.unary_unary_rpc_method_handler(
                     servicer.Withdraw,
                     request_deserializer=service__pb2.WithdrawInput.FromString,
-                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                    response_serializer=service__pb2.Output.SerializeToString,
             ),
             'PropogateWithdraw': grpc.unary_unary_rpc_method_handler(
                     servicer.PropogateWithdraw,
                     request_deserializer=service__pb2.PropogateWithdrawInput.FromString,
-                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                    response_serializer=service__pb2.Output.SerializeToString,
             ),
             'PropogateDeposit': grpc.unary_unary_rpc_method_handler(
                     servicer.PropogateDeposit,
                     request_deserializer=service__pb2.PropogateDepositInput.FromString,
-                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                    response_serializer=service__pb2.Output.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'Branch', rpc_method_handlers)
+            'bank.Branch', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
 
 
@@ -124,7 +128,7 @@ class Branch(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/Branch/Query',
+        return grpc.experimental.unary_unary(request, target, '/bank.Branch/Query',
             service__pb2.QueryInput.SerializeToString,
             service__pb2.QueryOutput.FromString,
             options, channel_credentials,
@@ -141,9 +145,9 @@ class Branch(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/Branch/Deposit',
+        return grpc.experimental.unary_unary(request, target, '/bank.Branch/Deposit',
             service__pb2.DepositInput.SerializeToString,
-            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            service__pb2.Output.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -158,9 +162,9 @@ class Branch(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/Branch/Withdraw',
+        return grpc.experimental.unary_unary(request, target, '/bank.Branch/Withdraw',
             service__pb2.WithdrawInput.SerializeToString,
-            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            service__pb2.Output.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -175,9 +179,9 @@ class Branch(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/Branch/PropogateWithdraw',
+        return grpc.experimental.unary_unary(request, target, '/bank.Branch/PropogateWithdraw',
             service__pb2.PropogateWithdrawInput.SerializeToString,
-            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            service__pb2.Output.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -192,8 +196,8 @@ class Branch(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/Branch/PropogateDeposit',
+        return grpc.experimental.unary_unary(request, target, '/bank.Branch/PropogateDeposit',
             service__pb2.PropogateDepositInput.SerializeToString,
-            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            service__pb2.Output.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

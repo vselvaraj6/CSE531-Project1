@@ -1,38 +1,53 @@
 syntax = "proto3";
-
-import "google/protobuf/empty.proto";
+package bank;
 
 service Branch {
-    rpc Query(QueryInput) returns (QueryOutput) {}
-    rpc Deposit(DepositInput) returns (google.protobuf.Empty) {}
-    rpc Withdraw(WithdrawInput) returns (google.protobuf.Empty) {}
-    rpc PropogateWithdraw(PropogateWithdrawInput) returns (google.protobuf.Empty) {}
-    rpc PropogateDeposit(PropogateDepositInput) returns (google.protobuf.Empty) {}
+    // Query branch 
+    rpc Query(QueryInput) returns (QueryOutput);
+    // Deposit to branch
+    rpc Deposit(DepositInput) returns (Output);
+    // Withdraw from branch
+    rpc Withdraw(WithdrawInput) returns (Output);
+    // Propogate withrdaw to other banches
+    rpc PropogateWithdraw(PropogateWithdrawInput) returns (Output);
+    // Propogate deposit to other banches
+    rpc PropogateDeposit(PropogateDepositInput) returns (Output);
 }
 
+// Generic output
+message Output{
+    string result = 1;
+}
+
+// Query input type
 message QueryInput {
     int32 id = 1;
 }
 
+// Query output type
 message QueryOutput {
     int64 money = 1;
 }
 
+// Deposit input type
 message DepositInput {
     int32 id = 1;
     int64 money = 2;
 }
 
+// Withdraw input type
 message WithdrawInput {
     int32 id = 1;
     int64 money = 2;
 }
 
+// Propogate withdraw input type
 message PropogateWithdrawInput {
     int32 id = 1;
     int64 money = 2;
 }
 
+// Propogate deposit input type
 message PropogateDepositInput {
     int32 id = 1;
     int64 money = 2;
