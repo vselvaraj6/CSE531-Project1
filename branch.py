@@ -28,10 +28,19 @@ class BranchServicer(service_pb2_grpc.BranchServicer):
         print("in msg delivery")
        
         print('interface',  request.events[0].interface)
-        if request.events[0].interface == 1:
-            output = service_pb2.Response()
-            output.id = self.id
-            print('processing queruy interface')
+        for event in request.events:
+            if event.interface == 0:
+                output = service_pb2.Response()
+                output.id = self.id
+                print('processing queruy interface')
+            elif event.interface == 1:
+                output = service_pb2.Response()
+                output.id = self.id
+                print('processing deposit interface')    
+            elif event.interface == 2:
+                output = service_pb2.Response()
+                output.id = self.id
+                print('processing withdraw interface')    
         return output
 
                

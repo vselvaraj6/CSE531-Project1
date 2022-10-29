@@ -41,9 +41,9 @@ enum Result {
 }
 
 enum Interface {
-    withdraw=0;
-    query=1;
-    deposit=2;
+    query=0;
+    deposit=1;
+    withdraw=2;   
     propogate_deposit=3;
     propogate_withdraw=4;
 }
