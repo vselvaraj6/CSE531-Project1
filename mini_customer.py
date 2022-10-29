@@ -12,7 +12,7 @@ class Customer:
         # a list of received messages used for debugging purpose
         self.recvMsg = list()
         # pointer for the stub
-        self.stub = None
+        self.stub = None 
 
     def __str__(self) -> str:
         return "id: {0}, events:{1}".format(self.id,self.events)   
@@ -29,11 +29,29 @@ class Customer:
     def executeEvents(self):
         for event in self.events:
             interface = event.get('interface')
+          #  print(interface)
+
+            # if(interface == 'deposit'):
+            #    deposit_np = service_pb2.DepositInput(id=self.id, money=event.get('money'))
+            #    output = self.stub.Deposit(deposit_np)
+               
 
             if(interface == 'query'):
                 port = 50050 + self.id
                 host = 'localhost:'+str(port)
                 print('Creating stub to connect to ', host)
-                query_inp = service_pb2.QueryInput(id=1)
-                output = self.stub.Query(query_inp)
-                print(output)
+                with grpc.insecure_channel(host) as channel:
+                    stub = service_pb2_grpc.BranchStub(channel)
+                    query_inp = service_pb2.QueryInput(id=1)
+                    output = stub.Query(query_inp)
+                    print(output)
+
+            # if(interface == 'deposit'):
+            #     port = 50050 + self.id
+            #     host = 'localhost:'+str(port)
+            #     print('Creating stub to connect to ', host)
+            #     with grpc.insecure_channel(host,  options=(('grpc.enable_http_proxy', 0),)) as channel:
+            #         stub = service_pb2_grpc.BranchStub(channel)
+            #         deposit_inp = service_pb2.DepositInput(id=self.id, money=111)
+            #         output = stub.Deposit(deposit_inp)
+            #         print(output)

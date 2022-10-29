@@ -18,7 +18,7 @@ with open(input_file, 'r') as f:
 
 def start_bank_process(id, balance, branches, port):
     GRPC_BIND_ADDR = '[::]:'+str(port)
-    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
+    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10), options=(('grpc.so_reuseport',0),))
     service_pb2_grpc.add_BranchServicer_to_server(Branch(id=id,balance=balance,branches=branches), server)
     server.add_insecure_port(GRPC_BIND_ADDR)
     server.start()
@@ -28,7 +28,6 @@ def start_bank_process(id, balance, branches, port):
 branch_processes = []
 port = 50051
 branches = []
-branch_ids = []
 for branch_event in branch_events:
     branch = Branch(branch_event.get('id'),branch_event.get('balance'),{})
     print("invoking branch process ... ", branch.id)
@@ -37,13 +36,9 @@ for branch_event in branch_events:
     branch_process.start()
     port = port + 1
     branches.append(branch)
-    branch_ids.append(branch.id)
 
 for branch in branches:
-    branch.set_branches(branch_ids)
-
-for branch in branches:
-    print(branch)
+    branch.set_branches(branches)
 
 for branch_process in branch_processes:
     branch_process.join()

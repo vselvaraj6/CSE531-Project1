@@ -1,54 +1,49 @@
 syntax = "proto3";
 
 service Branch {
-    // Query branch 
-    rpc Query(QueryInput) returns (QueryOutput);
-    // Deposit to branch
-    rpc Deposit(DepositInput) returns (Output);
-    // Withdraw from branch
-    rpc Withdraw(WithdrawInput) returns (Output);
-    // Propogate withrdaw to other banches
-    rpc PropogateWithdraw(PropogateWithdrawInput) returns (Output);
-    // Propogate deposit to other banches
-    rpc PropogateDeposit(PropogateDepositInput) returns (Output);
+    // MsgDelivery Service 
+    rpc MsgDelivery(Request) returns (Response);
 }
 
-// Generic output
-message Output{
-    string result = 1;
-}
-
-// Query input type
-message QueryInput {
+// API Request
+message Request {
     int32 id = 1;
+    Type type = 2;
+    repeated EventRequest events = 3;
 }
 
-// Query output type
-message QueryOutput {
-    int64 money = 1;
-}
-
-// Deposit input type
-message DepositInput {
+message EventRequest {
     int32 id = 1;
-    int64 money = 2;
+    Interface interface = 2;
+    int32 money = 3;
 }
 
-// Withdraw input type
-message WithdrawInput {
+//API Response
+message EventResponse {
+    Interface interface = 1;
+    int32 money = 2;
+    Result result = 3;
+}
+
+message Response {
     int32 id = 1;
-    int64 money = 2;
+    repeated EventResponse recv = 2;
 }
 
-// Propogate withdraw input type
-message PropogateWithdrawInput {
-    int32 id = 1;
-    int64 money = 2;
+enum Type {
+    CUSTOMER=0;
+    BRANCH=1;
 }
 
-// Propogate deposit input type
-message PropogateDepositInput {
-    int32 id = 1;
-    int64 money = 2;
+enum Result {
+    SUCCESS=0;
+    FAILURE=1;
 }
 
+enum Interface {
+    WITHDRAW=0;
+    QUERY=1;
+    DEPOSIT=2;
+    PROPOGATE_DEPOSIT=3;
+    PROPOGATE_WITHDRAW=4;
+}

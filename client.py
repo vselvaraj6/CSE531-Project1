@@ -18,6 +18,6 @@ for customer_event in customer_events:
     customer = Customer(customer_event.get('id'),customer_event.get('events'))
   #  print(customer)
     customers.append(customer)
-   # customer.createStub()
+    customer.stub = customer.createStub()
     customer.executeEvents()
   

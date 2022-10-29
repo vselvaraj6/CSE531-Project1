@@ -1,8 +1,9 @@
 
 from concurrent import futures
 import service_pb2_grpc
+import service_pb2
 
-class Branch(service_pb2_grpc.BranchServicer):
+class BranchServicer(service_pb2_grpc.BranchServicer):
 
     def __init__(self, id, balance, branches):
         # unique ID of the Branch
@@ -24,7 +25,14 @@ class Branch(service_pb2_grpc.BranchServicer):
         
     # TODO: students are expected to process requests from both Client and Branch
     def MsgDelivery(self,request, context):
-        pass
+
+        print("in msg delivery")
+        print(request)
+        output = service_pb2.QueryOutput()
+        output.money = self.balance
+        return output
+
+               
 
 
 

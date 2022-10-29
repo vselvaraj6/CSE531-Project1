@@ -33,9 +33,10 @@ class BranchServicer(service_pb2_grpc.BranchServicer):
     def Query(self, request, context):
         print("message recieved")
         print(request)
-        op = service_pb2.QueryOutput()
-        op.money = 400
-        return op
+        output = service_pb2.QueryOutput()
+        output.money = self.balance
+        print("context ", context)
+        return output
 
 def serve(id, balance, branches):
     GRPC_BIND_ADDR = "localhost:50051"
