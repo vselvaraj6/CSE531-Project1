@@ -32,6 +32,7 @@ class Customer:
         with grpc.insecure_channel(host) as channel:
             self.stub = service_pb2_grpc.BranchStub(channel)
             response = self.stub.MsgDelivery(request=request)
+            print(response)
         channel.close()    
 
   

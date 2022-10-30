@@ -33,12 +33,17 @@ for branch_event in branch_events:
     print("invoking branch process ... ", branch.id)
     branch_process = Process(target=start_bank_process, args=(branch.id,branch.balance,branch.branches,port))
     branch_processes.append(branch_process)
-    branch_process.start()
     port = port + 1
     branches.append(branch)
+    branch_process.start()
 
 for branch in branches:
     branch.set_branches(branches)
+
+# for branch in branches:
+#     print("size of branches", len(branch.branches), "for id: ", branch.id)
+#     for bra in branch.branches:
+#         print("balance", bra.balance, "id", bra.id)
 
 for branch_process in branch_processes:
     branch_process.join()

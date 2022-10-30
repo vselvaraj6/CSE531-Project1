@@ -15,7 +15,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\rservice.proto\"I\n\x07Request\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x13\n\x04type\x18\x02 \x01(\x0e\x32\x05.Type\x12\x1d\n\x06\x65vents\x18\x03 \x03(\x0b\x32\r.EventRequest\"H\n\x0c\x45ventRequest\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x1d\n\tinterface\x18\x02 \x01(\x0e\x32\n.Interface\x12\r\n\x05money\x18\x03 \x01(\x05\"V\n\rEventResponse\x12\x1d\n\tinterface\x18\x01 \x01(\x0e\x32\n.Interface\x12\r\n\x05money\x18\x02 \x01(\x05\x12\x17\n\x06result\x18\x03 \x01(\x0e\x32\x07.Result\"4\n\x08Response\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x1c\n\x04recv\x18\x02 \x03(\x0b\x32\x0e.EventResponse* \n\x04Type\x12\x0c\n\x08\x63ustomer\x10\x00\x12\n\n\x06\x62ranch\x10\x01*\"\n\x06Result\x12\x0b\n\x07success\x10\x00\x12\x0b\n\x07\x66\x61ilure\x10\x01*`\n\tInterface\x12\t\n\x05query\x10\x00\x12\x0b\n\x07\x64\x65posit\x10\x01\x12\x0c\n\x08withdraw\x10\x02\x12\x15\n\x11propogate_deposit\x10\x03\x12\x16\n\x12propogate_withdraw\x10\x04\x32,\n\x06\x42ranch\x12\"\n\x0bMsgDelivery\x12\x08.Request\x1a\t.Responseb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\rservice.proto\"I\n\x07Request\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x13\n\x04type\x18\x02 \x01(\x0e\x32\x05.Type\x12\x1d\n\x06\x65vents\x18\x03 \x03(\x0b\x32\r.EventRequest\"5\n\x16PropogateBranchRequest\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x0f\n\x07\x62\x61lance\x18\x02 \x01(\x05\"H\n\x0c\x45ventRequest\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x1d\n\tinterface\x18\x02 \x01(\x0e\x32\n.Interface\x12\r\n\x05money\x18\x03 \x01(\x05\"]\n\x08Response\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x1d\n\tinterface\x18\x02 \x01(\x0e\x32\n.Interface\x12\r\n\x05money\x18\x03 \x01(\x05\x12\x17\n\x06result\x18\x04 \x01(\x0e\x32\x07.Result\">\n\x17PropogateBranchResponse\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x17\n\x06result\x18\x02 \x01(\x0e\x32\x07.Result* \n\x04Type\x12\x0c\n\x08\x63ustomer\x10\x00\x12\n\n\x06\x62ranch\x10\x01*\"\n\x06Result\x12\x0b\n\x07success\x10\x00\x12\x0b\n\x07\x66\x61ilure\x10\x01*1\n\tInterface\x12\t\n\x05query\x10\x00\x12\x0b\n\x07\x64\x65posit\x10\x01\x12\x0c\n\x08withdraw\x10\x02\x32r\n\x06\x42ranch\x12\"\n\x0bMsgDelivery\x12\x08.Request\x1a\t.Response\x12\x44\n\x0fPropogateBranch\x12\x17.PropogateBranchRequest\x1a\x18.PropogateBranchResponseb\x06proto3')
 
 _TYPE = DESCRIPTOR.enum_types_by_name['Type']
 Type = enum_type_wrapper.EnumTypeWrapper(_TYPE)
@@ -30,20 +30,26 @@ failure = 1
 query = 0
 deposit = 1
 withdraw = 2
-propogate_deposit = 3
-propogate_withdraw = 4
 
 
 _REQUEST = DESCRIPTOR.message_types_by_name['Request']
+_PROPOGATEBRANCHREQUEST = DESCRIPTOR.message_types_by_name['PropogateBranchRequest']
 _EVENTREQUEST = DESCRIPTOR.message_types_by_name['EventRequest']
-_EVENTRESPONSE = DESCRIPTOR.message_types_by_name['EventResponse']
 _RESPONSE = DESCRIPTOR.message_types_by_name['Response']
+_PROPOGATEBRANCHRESPONSE = DESCRIPTOR.message_types_by_name['PropogateBranchResponse']
 Request = _reflection.GeneratedProtocolMessageType('Request', (_message.Message,), {
   'DESCRIPTOR' : _REQUEST,
   '__module__' : 'service_pb2'
   # @@protoc_insertion_point(class_scope:Request)
   })
 _sym_db.RegisterMessage(Request)
+
+PropogateBranchRequest = _reflection.GeneratedProtocolMessageType('PropogateBranchRequest', (_message.Message,), {
+  'DESCRIPTOR' : _PROPOGATEBRANCHREQUEST,
+  '__module__' : 'service_pb2'
+  # @@protoc_insertion_point(class_scope:PropogateBranchRequest)
+  })
+_sym_db.RegisterMessage(PropogateBranchRequest)
 
 EventRequest = _reflection.GeneratedProtocolMessageType('EventRequest', (_message.Message,), {
   'DESCRIPTOR' : _EVENTREQUEST,
@@ -52,13 +58,6 @@ EventRequest = _reflection.GeneratedProtocolMessageType('EventRequest', (_messag
   })
 _sym_db.RegisterMessage(EventRequest)
 
-EventResponse = _reflection.GeneratedProtocolMessageType('EventResponse', (_message.Message,), {
-  'DESCRIPTOR' : _EVENTRESPONSE,
-  '__module__' : 'service_pb2'
-  # @@protoc_insertion_point(class_scope:EventResponse)
-  })
-_sym_db.RegisterMessage(EventResponse)
-
 Response = _reflection.GeneratedProtocolMessageType('Response', (_message.Message,), {
   'DESCRIPTOR' : _RESPONSE,
   '__module__' : 'service_pb2'
@@ -66,24 +65,33 @@ Response = _reflection.GeneratedProtocolMessageType('Response', (_message.Messag
   })
 _sym_db.RegisterMessage(Response)
 
+PropogateBranchResponse = _reflection.GeneratedProtocolMessageType('PropogateBranchResponse', (_message.Message,), {
+  'DESCRIPTOR' : _PROPOGATEBRANCHRESPONSE,
+  '__module__' : 'service_pb2'
+  # @@protoc_insertion_point(class_scope:PropogateBranchResponse)
+  })
+_sym_db.RegisterMessage(PropogateBranchResponse)
+
 _BRANCH = DESCRIPTOR.services_by_name['Branch']
 if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
-  _TYPE._serialized_start=308
-  _TYPE._serialized_end=340
-  _RESULT._serialized_start=342
-  _RESULT._serialized_end=376
-  _INTERFACE._serialized_start=378
-  _INTERFACE._serialized_end=474
+  _TYPE._serialized_start=380
+  _TYPE._serialized_end=412
+  _RESULT._serialized_start=414
+  _RESULT._serialized_end=448
+  _INTERFACE._serialized_start=450
+  _INTERFACE._serialized_end=499
   _REQUEST._serialized_start=17
   _REQUEST._serialized_end=90
-  _EVENTREQUEST._serialized_start=92
-  _EVENTREQUEST._serialized_end=164
-  _EVENTRESPONSE._serialized_start=166
-  _EVENTRESPONSE._serialized_end=252
-  _RESPONSE._serialized_start=254
-  _RESPONSE._serialized_end=306
-  _BRANCH._serialized_start=476
-  _BRANCH._serialized_end=520
+  _PROPOGATEBRANCHREQUEST._serialized_start=92
+  _PROPOGATEBRANCHREQUEST._serialized_end=145
+  _EVENTREQUEST._serialized_start=147
+  _EVENTREQUEST._serialized_end=219
+  _RESPONSE._serialized_start=221
+  _RESPONSE._serialized_end=314
+  _PROPOGATEBRANCHRESPONSE._serialized_start=316
+  _PROPOGATEBRANCHRESPONSE._serialized_end=378
+  _BRANCH._serialized_start=501
+  _BRANCH._serialized_end=615
 # @@protoc_insertion_point(module_scope)
