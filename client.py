@@ -27,26 +27,27 @@ customer_input_items = parse_input_file()
 customers = []
 customer_processes = []
 
-
 for customer_input_item in customer_input_items:
     customer = Customer(customer_input_item.get('id'),customer_input_item.get('events'))
     customers.append(customer)
-    customer_process = Process(target=customer.executeUpdateEvents(),)
-    customer_processes.append(customer_process)
-    customer_process.start()
 
-for customer_process in customer_processes:
-    customer_process.join()    
+for customer in customers:
+    for event in customer.events:
+        if event.get('interface') != 'query':
+            customer_process = Process(target=customer.executeUpdateEvents(),)
+            customer_processes.append(customer_process)
+            customer_process.start()
 
-for customer_input_item in customer_input_items:
-    customer = Customer(customer_input_item.get('id'),customer_input_item.get('events'))
-    customers.append(customer)
-    customer_process = Process(target=customer.executeReadEvents(),)
-    customer_processes.append(customer_process)
-    customer_process.start()
+for customer in customers:
+    for event in customer.events:
+        if event.get('interface') == 'query':
+            customer_process = Process(target=customer.executeReadEvents(),)
+            customer_processes.append(customer_process)
+            customer_process.start()
 
 for customer_process in customer_processes:
     customer_process.join()    
 
 for customer in customers:
-    print('customer response : ', customer.recvMsg)
+    print('------------------Final Response-------------')
+    print(customer)
