@@ -26,6 +26,8 @@ customer_input_items = parse_input_file()
 
 customers = []
 customer_processes = []
+
+
 for customer_input_item in customer_input_items:
     customer = Customer(customer_input_item.get('id'),customer_input_item.get('events'))
     customers.append(customer)

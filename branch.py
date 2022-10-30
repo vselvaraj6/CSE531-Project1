@@ -34,35 +34,44 @@ class BranchServicer(service_pb2_grpc.BranchServicer):
 
     # TODO: students are expected to process requests from both Client and Branch
     def UpdateTransaction(self,request, context):
-        print("executing UpdateTransaction for..", request.event)
+       
         event = request.event
-        output = service_pb2.Response()
+        output = service_pb2.UpdateTransactionResponse()
         if event.interface == 1:
+            print("executing UpdateTransaction for..", request.event)
+            output.id = self.id
             self.balance = self.balance + event.money
+            output.result = 1
+            output.interface = event.interface
             print("deposit - customer id: ", self.id, "balance: ", self.balance)
+            print("Response from server UpdateTransaction:", output)
             self.propogate_branch()
         elif event.interface == 2:
+            print("executing UpdateTransaction for..", request.event)
+            output.id = self.id
             self.balance = self.balance - event.money
+            output.result = 1
+            output.interface = event.interface
             print("withdraw - customer id: ", self.id, "balance: ", self.balance)
+            print("Response from server UpdateTransaction:", output)
             self.propogate_branch()
-        output.id = self.id
-        output.result = 0
-        output.interface = event.interface
         return output
 
-    def ReadTransaction(self,request, context):
+    def ReadTransaction(self, request, context):
         print("executing ReadTransaction for..", request.event)
-        output = service_pb2.Response()
+        output = service_pb2.ReadTransactionResponse()
         output.money = self.balance  
         print("query - customer id: ", self.id, "balance: ", self.balance)
         output.id = self.id
-        output.result = 0
-        output.interface = request.event.interface
+        output.result = 1
+        output.interface = 3
+        print("Response from server ReadTransaction:", output)
         return output
 
     def PropogateBranch(self, request, context):
         self.balance = request.balance 
         print("propogate balance to branch id: ", self.id , "successful!")   
         output = service_pb2.PropogateBranchResponse()
-        output.result = 0
+        output.result = 1
+        print("Response from server PropogateBalance:", output)
         return output   

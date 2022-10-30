@@ -17,7 +17,7 @@ class Customer:
         self.stub = None
 
     def __str__(self) -> str:
-        return "id: {0}, events:{1}".format(self.id,self.events)   
+        return "id: {0}, recv:{1}".format(self.id,self.recvMsg)   
 
     # TODO: students are expected to create the Customer stub
     def createStub(self):
@@ -35,6 +35,7 @@ class Customer:
                 self.stub = service_pb2_grpc.BranchStub(channel)
                 response = self.stub.UpdateTransaction(request=request)
                 self.recvMsg.append(response)
+                print('Recieved executeUpdateEvents Response', self.recvMsg)
             channel.close()                    
 
     def executeReadEvents(self):
@@ -48,6 +49,7 @@ class Customer:
                 self.stub = service_pb2_grpc.BranchStub(channel)
                 response = self.stub.ReadTransaction(request=request)
                 self.recvMsg.append(response)
+                print('Recieved executeReadEvents Response', self.recvMsg)
             channel.close()                    
 
   

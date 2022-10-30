@@ -17,12 +17,12 @@ class BranchStub(object):
         self.UpdateTransaction = channel.unary_unary(
                 '/Branch/UpdateTransaction',
                 request_serializer=service__pb2.Request.SerializeToString,
-                response_deserializer=service__pb2.Response.FromString,
+                response_deserializer=service__pb2.UpdateTransactionResponse.FromString,
                 )
         self.ReadTransaction = channel.unary_unary(
                 '/Branch/ReadTransaction',
                 request_serializer=service__pb2.Request.SerializeToString,
-                response_deserializer=service__pb2.Response.FromString,
+                response_deserializer=service__pb2.ReadTransactionResponse.FromString,
                 )
         self.PropogateBranch = channel.unary_unary(
                 '/Branch/PropogateBranch',
@@ -59,12 +59,12 @@ def add_BranchServicer_to_server(servicer, server):
             'UpdateTransaction': grpc.unary_unary_rpc_method_handler(
                     servicer.UpdateTransaction,
                     request_deserializer=service__pb2.Request.FromString,
-                    response_serializer=service__pb2.Response.SerializeToString,
+                    response_serializer=service__pb2.UpdateTransactionResponse.SerializeToString,
             ),
             'ReadTransaction': grpc.unary_unary_rpc_method_handler(
                     servicer.ReadTransaction,
                     request_deserializer=service__pb2.Request.FromString,
-                    response_serializer=service__pb2.Response.SerializeToString,
+                    response_serializer=service__pb2.ReadTransactionResponse.SerializeToString,
             ),
             'PropogateBranch': grpc.unary_unary_rpc_method_handler(
                     servicer.PropogateBranch,
@@ -94,7 +94,7 @@ class Branch(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Branch/UpdateTransaction',
             service__pb2.Request.SerializeToString,
-            service__pb2.Response.FromString,
+            service__pb2.UpdateTransactionResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -111,7 +111,7 @@ class Branch(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Branch/ReadTransaction',
             service__pb2.Request.SerializeToString,
-            service__pb2.Response.FromString,
+            service__pb2.ReadTransactionResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

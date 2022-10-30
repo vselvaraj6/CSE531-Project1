@@ -2,8 +2,8 @@ syntax = "proto3";
 
 service Branch {
     // MsgDelivery Service 
-    rpc UpdateTransaction(Request) returns (Response);
-    rpc ReadTransaction(Request) returns (Response);
+    rpc UpdateTransaction(Request) returns (UpdateTransactionResponse);
+    rpc ReadTransaction(Request) returns (ReadTransactionResponse);
     rpc PropogateBranch(PropogateBranchRequest) returns (PropogateBranchResponse);
 }
 
@@ -24,7 +24,13 @@ message EventRequest {
 }
 
 //API Response
-message Response {
+message UpdateTransactionResponse {
+    int32 id = 1;
+    Interface interface = 2;
+    Result result = 3;
+}
+
+message ReadTransactionResponse {
     int32 id = 1;
     Interface interface = 2;
     int32 money = 3;
@@ -36,12 +42,14 @@ message PropogateBranchResponse{
 }
 
 enum Result {
-    success = 0;
-    failure = 1;
+    uknown=0;
+    success=1;
+    failure=2;
 }
 
 enum Interface {
-    query=0;
+    undefined=0;
     deposit=1;
     withdraw=2;
+    query=3;
 }
