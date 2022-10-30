@@ -30,23 +30,20 @@ class BranchServicer(service_pb2_grpc.BranchServicer):
                 self.stub = service_pb2_grpc.BranchStub(channel)
                 request = service_pb2.PropogateBranchRequest(balance=self.balance)
                 response = self.stub.PropogateBranch(request=request)
-                print(response)
             channel.close()     
 
     # TODO: students are expected to process requests from both Client and Branch
     def UpdateTransaction(self,request, context):
-
+        print("executing UpdateTransaction for..", request.event)
         event = request.event
         output = service_pb2.Response()
         if event.interface == 1:
             self.balance = self.balance + event.money
             print("deposit - customer id: ", self.id, "balance: ", self.balance)
-            print("executing event..", event)
             self.propogate_branch()
         elif event.interface == 2:
             self.balance = self.balance - event.money
             print("withdraw - customer id: ", self.id, "balance: ", self.balance)
-            print("executing event..", event)
             self.propogate_branch()
         output.id = self.id
         output.result = 0
@@ -65,7 +62,7 @@ class BranchServicer(service_pb2_grpc.BranchServicer):
 
     def PropogateBranch(self, request, context):
         self.balance = request.balance 
-        print("propogate branch successful!")   
+        print("propogate balance to branch id: ", self.id , "successful!")   
         output = service_pb2.PropogateBranchResponse()
         output.result = 0
         return output   

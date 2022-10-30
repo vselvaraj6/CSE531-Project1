@@ -35,7 +35,6 @@ class Customer:
                 self.stub = service_pb2_grpc.BranchStub(channel)
                 response = self.stub.UpdateTransaction(request=request)
                 self.recvMsg.append(response)
-            print("response recvd for", event, response)
             channel.close()                    
 
     def executeReadEvents(self):
@@ -49,7 +48,6 @@ class Customer:
                 self.stub = service_pb2_grpc.BranchStub(channel)
                 response = self.stub.ReadTransaction(request=request)
                 self.recvMsg.append(response)
-            print("response recvd for", event, response)
             channel.close()                    
 
   

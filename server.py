@@ -6,15 +6,20 @@ from concurrent import futures
 import service_pb2_grpc
 import grpc
 
-input_file = sys.argv[1]
-branch_events = list()
 
-with open(input_file, 'r') as f:
-    input_events = json.load(f)    
+def parse_input_file():
+    branch_input_items =list()
+    try:
+        with open(input_file, 'r') as f:
+            input_items = json.load(f)    
 
-    for input_event in input_events:
-        if('branch' == input_event.get('type')):
-            branch_events.append(input_event)
+            for input_item in input_items:
+                if('branch' == input_item.get('type')):
+                    branch_input_items.append(input_item)   
+    except:
+        print("Invalid format. Please check the content of input.json file")   
+    return branch_input_items
+
 
 def start_bank_process(id, balance, branches, port):
     GRPC_BIND_ADDR = '[::]:'+str(port)
@@ -23,34 +28,40 @@ def start_bank_process(id, balance, branches, port):
     server.add_insecure_port(GRPC_BIND_ADDR)
     server.start()
     print("gRPC Bank process started for ID:" , id, "Listening on port:",  GRPC_BIND_ADDR)
-    server.wait_for_termination()            
+    server.wait_for_termination()   
+
+
+print("Running server.py..")             
+
+if len(sys.argv) < 2:
+    print("Missing input file. Pass input.json file as argument!")
+    exit()
 
 branch_processes = []
 port = 50051
 branches = []
+input_file = sys.argv[1]
+branch_input_items = parse_input_file()
 
 port_map = {}
 #populate ports for no. of bank process
-for branch in branch_events:
-    key = branch.get('id')
+for branch_input_item in branch_input_items:
+    key = branch_input_item.get('id')
     port_map[key] = port
     port = port + 1
 
-print("port_map", port_map)
-
-for branch_event in branch_events:
+for branch_input_item in branch_input_items:
 
     #remove self processes from the branch 
-    branch_id = branch_event.get('id')
+    branch_id = branch_input_item.get('id')
     processes = []
    
     for key, value in port_map.items():
         if key != branch_id :
             processes.append(value)
 
-    print("processes after self removal", processes)
-    branch = BranchServicer(branch_id, branch_event.get('balance'), processes)
-    print("invoking branch process ... ", branch.id)
+    branch = BranchServicer(branch_id, branch_input_item.get('balance'), processes)
+    print("Invoking branch process for id : ", branch.id)
     branch_process = Process(target=start_bank_process, args=(branch.id,branch.balance,branch.branches,port_map.get(branch_id)))
     branch_processes.append(branch_process)
     branches.append(branch)

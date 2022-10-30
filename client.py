@@ -3,15 +3,26 @@ import sys
 from customer import Customer
 from multiprocessing import Process
 
+def parse_input_file():
+    customer_input_items = list()
+    try:
+        with open(input_file, 'r') as f:
+            input_items = json.load(f)    
+
+            for input_item in input_items:
+                if('customer' == input_item.get('type')):
+                    customer_input_items.append(input_item)           
+    except:
+        print("Invalid format. Please check the content of input.json file") 
+    return customer_input_items                   
+
+
+if len(sys.argv) < 2:
+    print("Missing input file. Pass input.json file as argument!")
+    exit()
+
 input_file = sys.argv[1]
-customer_input_items = list()
-
-with open(input_file, 'r') as f:
-    input_items = json.load(f)    
-
-    for input_item in input_items:
-        if('customer' == input_item.get('type')):
-            customer_input_items.append(input_item)
+customer_input_items = parse_input_file()
 
 customers = []
 customer_processes = []
@@ -36,4 +47,4 @@ for customer_process in customer_processes:
     customer_process.join()    
 
 for customer in customers:
-    print('customer response : ', customer)
+    print('customer response : ', customer.recvMsg)
