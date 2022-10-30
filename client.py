@@ -57,6 +57,11 @@ for customer in customers:
 for customer_process in customer_processes:
     customer_process.join()    
 
+print("Final_Response")
+
 for customer in customers:
-    print('------------------Final Response-------------')
-    print(customer)
+    print("{ 'id': ", customer.id, "'recv:'", customer.recvMsg, "}")
+
+with open('output.txt', 'w') as f:
+    for customer in customers:
+        f.writelines(repr(customer))

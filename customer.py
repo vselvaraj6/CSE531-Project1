@@ -17,7 +17,10 @@ class Customer:
         self.stub = None
 
     def __str__(self) -> str:
-        return "id: {0}, recv:{1}".format(self.id,self.recvMsg)   
+        return "id: {0}, recv:{1}".format(self.id,self.recvMsg)  
+
+    def __repr__(self):
+        return str(self)     
 
     # TODO: students are expected to create the Customer stub
     def createStub(self):
