@@ -30,13 +30,14 @@ class Customer:
         print('Creating customer stub to connect to branch on ', host)
         
         for event in self.events:
-            request = service_pb2.Request(id=self.id, event=event)
-            with grpc.insecure_channel(host) as channel:
-                self.stub = service_pb2_grpc.BranchStub(channel)
-                response = self.stub.UpdateTransaction(request=request)
-                self.recvMsg.append(response)
-                print('Recieved executeUpdateEvents Response', self.recvMsg)
-            channel.close()                    
+            if event.get('interface') != 'query':
+                request = service_pb2.Request(id=self.id, event=event)
+                with grpc.insecure_channel(host) as channel:
+                    self.stub = service_pb2_grpc.BranchStub(channel)
+                    response = self.stub.UpdateTransaction(request=request)
+                    self.recvMsg.append(response)
+                    print('Recieved executeUpdateEvents Response', self.recvMsg)
+                channel.close()                    
 
     def executeReadEvents(self):
         port = 50050 + self.id
@@ -44,12 +45,13 @@ class Customer:
         print('Creating customer stub to connect to branch on ', host)
         
         for event in self.events:
-            request = service_pb2.Request(id=self.id, event=event)
-            with grpc.insecure_channel(host) as channel:
-                self.stub = service_pb2_grpc.BranchStub(channel)
-                response = self.stub.ReadTransaction(request=request)
-                self.recvMsg.append(response)
-                print('Recieved executeReadEvents Response', self.recvMsg)
-            channel.close()                    
+            if event.get('interface') == 'query':
+                request = service_pb2.Request(id=self.id, event=event)
+                with grpc.insecure_channel(host) as channel:
+                    self.stub = service_pb2_grpc.BranchStub(channel)
+                    response = self.stub.ReadTransaction(request=request)
+                    self.recvMsg.append(response)
+                    print('Recieved executeReadEvents Response', self.recvMsg)
+                channel.close()                    
 
   

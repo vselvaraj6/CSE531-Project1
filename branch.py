@@ -25,7 +25,7 @@ class BranchServicer(service_pb2_grpc.BranchServicer):
 
         for process in self.branches:
             host = 'localhost:'+str(process)
-            print('Creating branch stub to connect to ', host)
+          #  print('Creating branch stub to connect to ', host)
             with grpc.insecure_channel(host) as channel:
                 self.stub = service_pb2_grpc.BranchStub(channel)
                 request = service_pb2.PropogateBranchRequest(balance=self.balance)
@@ -43,7 +43,7 @@ class BranchServicer(service_pb2_grpc.BranchServicer):
             self.balance = self.balance + event.money
             output.result = 1
             output.interface = event.interface
-            print("deposit - customer id: ", self.id, "balance: ", self.balance)
+         #   print("deposit - customer id: ", self.id, "balance: ", self.balance)
             print("Response from server UpdateTransaction:", output)
             self.propogate_branch()
         elif event.interface == 2:
@@ -52,7 +52,7 @@ class BranchServicer(service_pb2_grpc.BranchServicer):
             self.balance = self.balance - event.money
             output.result = 1
             output.interface = event.interface
-            print("withdraw - customer id: ", self.id, "balance: ", self.balance)
+          #  print("withdraw - customer id: ", self.id, "balance: ", self.balance)
             print("Response from server UpdateTransaction:", output)
             self.propogate_branch()
         return output
@@ -61,7 +61,7 @@ class BranchServicer(service_pb2_grpc.BranchServicer):
         print("executing ReadTransaction for..", request.event)
         output = service_pb2.ReadTransactionResponse()
         output.money = self.balance  
-        print("query - customer id: ", self.id, "balance: ", self.balance)
+       # print("query - customer id: ", self.id, "balance: ", self.balance)
         output.id = self.id
         output.result = 1
         output.interface = 3
@@ -70,8 +70,8 @@ class BranchServicer(service_pb2_grpc.BranchServicer):
 
     def PropogateBranch(self, request, context):
         self.balance = request.balance 
-        print("propogate balance to branch id: ", self.id , "successful!")   
+      #  print("propogate balance to branch id: ", self.id , "successful!")   
         output = service_pb2.PropogateBranchResponse()
         output.result = 1
-        print("Response from server PropogateBalance:", output)
+      #  print("Response from server PropogateBalance:", output)
         return output   

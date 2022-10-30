@@ -1,7 +1,9 @@
 import json
 import sys
+import time
 from customer import Customer
 from multiprocessing import Process
+
 
 def parse_input_file():
     customer_input_items = list()
@@ -31,16 +33,23 @@ for customer_input_item in customer_input_items:
     customer = Customer(customer_input_item.get('id'),customer_input_item.get('events'))
     customers.append(customer)
 
+#Invoke withdraw and deposit interface
 for customer in customers:
     for event in customer.events:
         if event.get('interface') != 'query':
+            print("---customer events non-query ---", customer.events)
             customer_process = Process(target=customer.executeUpdateEvents(),)
             customer_processes.append(customer_process)
             customer_process.start()
 
+# sleep for 3 seconds before querying
+time.sleep(3)
+
+# Invoke query interface
 for customer in customers:
     for event in customer.events:
         if event.get('interface') == 'query':
+            print("---customer events for query ---", customer.events)
             customer_process = Process(target=customer.executeReadEvents(),)
             customer_processes.append(customer_process)
             customer_process.start()
