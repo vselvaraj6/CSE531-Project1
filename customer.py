@@ -24,15 +24,32 @@ class Customer:
        pass
 
     # TODO: students are expected to send out the events to the Bank
-    def executeEvents(self):
+    def executeUpdateEvents(self):
         port = 50050 + self.id
         host = 'localhost:'+str(port)
-        print('Creating stub to connect to ', host)
-        request = service_pb2.Request(id=self.id, type='customer', events=self.events)
-        with grpc.insecure_channel(host) as channel:
-            self.stub = service_pb2_grpc.BranchStub(channel)
-            response = self.stub.MsgDelivery(request=request)
-            print(response)
-        channel.close()    
+        print('Creating customer stub to connect to branch on ', host)
+        
+        for event in self.events:
+            request = service_pb2.Request(id=self.id, event=event)
+            with grpc.insecure_channel(host) as channel:
+                self.stub = service_pb2_grpc.BranchStub(channel)
+                response = self.stub.UpdateTransaction(request=request)
+                self.recvMsg.append(response)
+            print("response recvd for", event, response)
+            channel.close()                    
+
+    def executeReadEvents(self):
+        port = 50050 + self.id
+        host = 'localhost:'+str(port)
+        print('Creating customer stub to connect to branch on ', host)
+        
+        for event in self.events:
+            request = service_pb2.Request(id=self.id, event=event)
+            with grpc.insecure_channel(host) as channel:
+                self.stub = service_pb2_grpc.BranchStub(channel)
+                response = self.stub.ReadTransaction(request=request)
+                self.recvMsg.append(response)
+            print("response recvd for", event, response)
+            channel.close()                    
 
   

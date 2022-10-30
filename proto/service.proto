@@ -2,20 +2,19 @@ syntax = "proto3";
 
 service Branch {
     // MsgDelivery Service 
-    rpc MsgDelivery(Request) returns (Response);
+    rpc UpdateTransaction(Request) returns (Response);
+    rpc ReadTransaction(Request) returns (Response);
     rpc PropogateBranch(PropogateBranchRequest) returns (PropogateBranchResponse);
 }
 
 // API Request
 message Request {
     int32 id = 1;
-    Type type = 2;
-    repeated EventRequest events = 3;
+    EventRequest event = 3;
 }
 
 message PropogateBranchRequest {
-    int32 id = 1;
-    int32 balance = 2;
+    int32 balance = 1;
 }
 
 message EventRequest {
@@ -33,13 +32,7 @@ message Response {
 }
 
 message PropogateBranchResponse{
-    int32 id = 1;
-    Result result = 2;
-}
-
-enum Type {
-    customer = 0;
-    branch = 1;
+    Result result = 1;
 }
 
 enum Result {

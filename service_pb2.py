@@ -15,16 +15,12 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\rservice.proto\"I\n\x07Request\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x13\n\x04type\x18\x02 \x01(\x0e\x32\x05.Type\x12\x1d\n\x06\x65vents\x18\x03 \x03(\x0b\x32\r.EventRequest\"5\n\x16PropogateBranchRequest\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x0f\n\x07\x62\x61lance\x18\x02 \x01(\x05\"H\n\x0c\x45ventRequest\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x1d\n\tinterface\x18\x02 \x01(\x0e\x32\n.Interface\x12\r\n\x05money\x18\x03 \x01(\x05\"]\n\x08Response\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x1d\n\tinterface\x18\x02 \x01(\x0e\x32\n.Interface\x12\r\n\x05money\x18\x03 \x01(\x05\x12\x17\n\x06result\x18\x04 \x01(\x0e\x32\x07.Result\">\n\x17PropogateBranchResponse\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x17\n\x06result\x18\x02 \x01(\x0e\x32\x07.Result* \n\x04Type\x12\x0c\n\x08\x63ustomer\x10\x00\x12\n\n\x06\x62ranch\x10\x01*\"\n\x06Result\x12\x0b\n\x07success\x10\x00\x12\x0b\n\x07\x66\x61ilure\x10\x01*1\n\tInterface\x12\t\n\x05query\x10\x00\x12\x0b\n\x07\x64\x65posit\x10\x01\x12\x0c\n\x08withdraw\x10\x02\x32r\n\x06\x42ranch\x12\"\n\x0bMsgDelivery\x12\x08.Request\x1a\t.Response\x12\x44\n\x0fPropogateBranch\x12\x17.PropogateBranchRequest\x1a\x18.PropogateBranchResponseb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\rservice.proto\"3\n\x07Request\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x1c\n\x05\x65vent\x18\x03 \x01(\x0b\x32\r.EventRequest\")\n\x16PropogateBranchRequest\x12\x0f\n\x07\x62\x61lance\x18\x01 \x01(\x05\"H\n\x0c\x45ventRequest\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x1d\n\tinterface\x18\x02 \x01(\x0e\x32\n.Interface\x12\r\n\x05money\x18\x03 \x01(\x05\"]\n\x08Response\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x1d\n\tinterface\x18\x02 \x01(\x0e\x32\n.Interface\x12\r\n\x05money\x18\x03 \x01(\x05\x12\x17\n\x06result\x18\x04 \x01(\x0e\x32\x07.Result\"2\n\x17PropogateBranchResponse\x12\x17\n\x06result\x18\x01 \x01(\x0e\x32\x07.Result*\"\n\x06Result\x12\x0b\n\x07success\x10\x00\x12\x0b\n\x07\x66\x61ilure\x10\x01*1\n\tInterface\x12\t\n\x05query\x10\x00\x12\x0b\n\x07\x64\x65posit\x10\x01\x12\x0c\n\x08withdraw\x10\x02\x32\xa0\x01\n\x06\x42ranch\x12(\n\x11UpdateTransaction\x12\x08.Request\x1a\t.Response\x12&\n\x0fReadTransaction\x12\x08.Request\x1a\t.Response\x12\x44\n\x0fPropogateBranch\x12\x17.PropogateBranchRequest\x1a\x18.PropogateBranchResponseb\x06proto3')
 
-_TYPE = DESCRIPTOR.enum_types_by_name['Type']
-Type = enum_type_wrapper.EnumTypeWrapper(_TYPE)
 _RESULT = DESCRIPTOR.enum_types_by_name['Result']
 Result = enum_type_wrapper.EnumTypeWrapper(_RESULT)
 _INTERFACE = DESCRIPTOR.enum_types_by_name['Interface']
 Interface = enum_type_wrapper.EnumTypeWrapper(_INTERFACE)
-customer = 0
-branch = 1
 success = 0
 failure = 1
 query = 0
@@ -76,22 +72,20 @@ _BRANCH = DESCRIPTOR.services_by_name['Branch']
 if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
-  _TYPE._serialized_start=380
-  _TYPE._serialized_end=412
-  _RESULT._serialized_start=414
-  _RESULT._serialized_end=448
-  _INTERFACE._serialized_start=450
-  _INTERFACE._serialized_end=499
+  _RESULT._serialized_start=334
+  _RESULT._serialized_end=368
+  _INTERFACE._serialized_start=370
+  _INTERFACE._serialized_end=419
   _REQUEST._serialized_start=17
-  _REQUEST._serialized_end=90
-  _PROPOGATEBRANCHREQUEST._serialized_start=92
-  _PROPOGATEBRANCHREQUEST._serialized_end=145
-  _EVENTREQUEST._serialized_start=147
-  _EVENTREQUEST._serialized_end=219
-  _RESPONSE._serialized_start=221
-  _RESPONSE._serialized_end=314
-  _PROPOGATEBRANCHRESPONSE._serialized_start=316
-  _PROPOGATEBRANCHRESPONSE._serialized_end=378
-  _BRANCH._serialized_start=501
-  _BRANCH._serialized_end=615
+  _REQUEST._serialized_end=68
+  _PROPOGATEBRANCHREQUEST._serialized_start=70
+  _PROPOGATEBRANCHREQUEST._serialized_end=111
+  _EVENTREQUEST._serialized_start=113
+  _EVENTREQUEST._serialized_end=185
+  _RESPONSE._serialized_start=187
+  _RESPONSE._serialized_end=280
+  _PROPOGATEBRANCHRESPONSE._serialized_start=282
+  _PROPOGATEBRANCHRESPONSE._serialized_end=332
+  _BRANCH._serialized_start=422
+  _BRANCH._serialized_end=582
 # @@protoc_insertion_point(module_scope)
