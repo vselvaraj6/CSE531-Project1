@@ -1,14 +1,17 @@
 # BankingSystem
 
-To generate interface file:
-
-``` bash
-protoc proto/service.proto --grpc_python_out=./generated --python_out=./generated --proto_path=./proto
+To generate grpc server and client stub files:
 ```
-
-To generate grpc file:
-```
-python3 -m grpc_tools.protoc -I proto --python_out=./generated --grpc_python_out=./generated proto/service.proto
+python3 -m grpc_tools.protoc -I proto --python_out=. --grpc_python_out=. proto/service.proto
 ```
 
 
+To run server:
+```bash
+python3 server.py input.json
+```
+
+To run client:
+```bash
+python3 client.py input.json
+```
