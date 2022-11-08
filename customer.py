@@ -27,34 +27,49 @@ class Customer:
        pass
 
     # TODO: students are expected to send out the events to the Bank
-    def executeUpdateEvents(self):
+    def executeWithdrawEvents(self):
         port = 50050 + self.id
         host = 'localhost:'+str(port)
         print('Creating customer stub to connect to branch on ', host)
         
         for event in self.events:
-            if event.get('interface') != 'query':
-                request = service_pb2.Request(id=self.id, event=event)
+            if event.get('interface') == 'withdraw':
+                request = service_pb2.WithdrawRequest(id=self.id, event=event)
                 with grpc.insecure_channel(host) as channel:
                     self.stub = service_pb2_grpc.BranchStub(channel)
-                    response = self.stub.UpdateTransaction(request=request)
+                    response = self.stub.Withdraw(request=request)
                     self.recvMsg.append(response)
-                    print('Recieved executeUpdateEvents Response', self.recvMsg)
-                channel.close()                    
+                    print('Recieved WithdrawResponse', self.recvMsg)
+                channel.close()   
 
-    def executeReadEvents(self):
+    def executeDepositEvents(self):
+        port = 50050 + self.id
+        host = 'localhost:'+str(port)
+        print('Creating customer stub to connect to branch on ', host)
+        
+        for event in self.events:
+            if event.get('interface') == 'deposit':
+                request = service_pb2.DepositRequest(id=self.id, event=event)
+                with grpc.insecure_channel(host) as channel:
+                    self.stub = service_pb2_grpc.BranchStub(channel)
+                    response = self.stub.Deposit(request=request)
+                    self.recvMsg.append(response)
+                    print('Recieved DepositResponse', self.recvMsg)
+                channel.close()                                
+
+    def executeQueryEvents(self):
         port = 50050 + self.id
         host = 'localhost:'+str(port)
         print('Creating customer stub to connect to branch on ', host)
         
         for event in self.events:
             if event.get('interface') == 'query':
-                request = service_pb2.Request(id=self.id, event=event)
+                request = service_pb2.QueryRequest(id=self.id, event=event)
                 with grpc.insecure_channel(host) as channel:
                     self.stub = service_pb2_grpc.BranchStub(channel)
-                    response = self.stub.ReadTransaction(request=request)
+                    response = self.stub.Query(request=request)
                     self.recvMsg.append(response)
-                    print('Recieved executeReadEvents Response', self.recvMsg)
+                    print('Recieved QueryResponse', self.recvMsg)
                 channel.close()                    
 
   

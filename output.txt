@@ -10,8 +10,6 @@ interface: query
 money: 500
 result: success
 ]id: 3, recv:[id: 3
-interface: withdraw
-result: success
 , id: 3
 interface: query
 money: 500

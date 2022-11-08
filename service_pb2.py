@@ -15,7 +15,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\rservice.proto\"3\n\x07Request\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x1c\n\x05\x65vent\x18\x03 \x01(\x0b\x32\r.EventRequest\"+\n\x18WithdrawPropogateRequest\x12\x0f\n\x07\x62\x61lance\x18\x01 \x01(\x05\"*\n\x17\x44\x65positPropogateRequest\x12\x0f\n\x07\x62\x61lance\x18\x01 \x01(\x05\"H\n\x0c\x45ventRequest\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x1d\n\tinterface\x18\x02 \x01(\x0e\x32\n.Interface\x12\r\n\x05money\x18\x03 \x01(\x05\"_\n\x19UpdateTransactionResponse\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x1d\n\tinterface\x18\x02 \x01(\x0e\x32\n.Interface\x12\x17\n\x06result\x18\x03 \x01(\x0e\x32\x07.Result\"l\n\x17ReadTransactionResponse\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x1d\n\tinterface\x18\x02 \x01(\x0e\x32\n.Interface\x12\r\n\x05money\x18\x03 \x01(\x05\x12\x17\n\x06result\x18\x04 \x01(\x0e\x32\x07.Result\"4\n\x19WithdrawPropogateResponse\x12\x17\n\x06result\x18\x01 \x01(\x0e\x32\x07.Result\"3\n\x18\x44\x65positPropogateResponse\x12\x17\n\x06result\x18\x01 \x01(\x0e\x32\x07.Result*.\n\x06Result\x12\n\n\x06uknown\x10\x00\x12\x0b\n\x07success\x10\x01\x12\x0b\n\x07\x66\x61ilure\x10\x02*@\n\tInterface\x12\r\n\tundefined\x10\x00\x12\x0b\n\x07\x64\x65posit\x10\x01\x12\x0c\n\x08withdraw\x10\x02\x12\t\n\x05query\x10\x03\x32\x8e\x02\n\x06\x42ranch\x12\x39\n\x11UpdateTransaction\x12\x08.Request\x1a\x1a.UpdateTransactionResponse\x12\x35\n\x0fReadTransaction\x12\x08.Request\x1a\x18.ReadTransactionResponse\x12J\n\x11WithdrawPropogate\x12\x19.WithdrawPropogateRequest\x1a\x1a.WithdrawPropogateResponse\x12\x46\n\x10\x44\x65positPropogate\x12\x18.DepositPropogateRequest\x1a\x18.DepositPropogateRequestb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\rservice.proto\";\n\x0fWithdrawRequest\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x1c\n\x05\x65vent\x18\x03 \x01(\x0b\x32\r.EventRequest\":\n\x0e\x44\x65positRequest\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x1c\n\x05\x65vent\x18\x03 \x01(\x0b\x32\r.EventRequest\"8\n\x0cQueryRequest\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x1c\n\x05\x65vent\x18\x03 \x01(\x0b\x32\r.EventRequest\"+\n\x18WithdrawPropogateRequest\x12\x0f\n\x07\x62\x61lance\x18\x01 \x01(\x05\"*\n\x17\x44\x65positPropogateRequest\x12\x0f\n\x07\x62\x61lance\x18\x01 \x01(\x05\"H\n\x0c\x45ventRequest\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x1d\n\tinterface\x18\x02 \x01(\x0e\x32\n.Interface\x12\r\n\x05money\x18\x03 \x01(\x05\"V\n\x10WithdrawResponse\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x1d\n\tinterface\x18\x02 \x01(\x0e\x32\n.Interface\x12\x17\n\x06result\x18\x03 \x01(\x0e\x32\x07.Result\"U\n\x0f\x44\x65positResponse\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x1d\n\tinterface\x18\x02 \x01(\x0e\x32\n.Interface\x12\x17\n\x06result\x18\x03 \x01(\x0e\x32\x07.Result\"b\n\rQueryResponse\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x1d\n\tinterface\x18\x02 \x01(\x0e\x32\n.Interface\x12\r\n\x05money\x18\x03 \x01(\x05\x12\x17\n\x06result\x18\x04 \x01(\x0e\x32\x07.Result\"4\n\x19WithdrawPropogateResponse\x12\x17\n\x06result\x18\x01 \x01(\x0e\x32\x07.Result\"3\n\x18\x44\x65positPropogateResponse\x12\x17\n\x06result\x18\x01 \x01(\x0e\x32\x07.Result*.\n\x06Result\x12\n\n\x06uknown\x10\x00\x12\x0b\n\x07success\x10\x01\x12\x0b\n\x07\x66\x61ilure\x10\x02*@\n\tInterface\x12\r\n\tundefined\x10\x00\x12\x0b\n\x07\x64\x65posit\x10\x01\x12\x0c\n\x08withdraw\x10\x02\x12\t\n\x05query\x10\x03\x32\xa2\x02\n\x06\x42ranch\x12,\n\x07\x44\x65posit\x12\x0f.DepositRequest\x1a\x10.DepositResponse\x12.\n\x08Withdraw\x12\x10.WithdrawRequest\x1a\x10.WithdrawRequest\x12&\n\x05Query\x12\r.QueryRequest\x1a\x0e.QueryResponse\x12J\n\x11WithdrawPropogate\x12\x19.WithdrawPropogateRequest\x1a\x1a.WithdrawPropogateResponse\x12\x46\n\x10\x44\x65positPropogate\x12\x18.DepositPropogateRequest\x1a\x18.DepositPropogateRequestb\x06proto3')
 
 _RESULT = DESCRIPTOR.enum_types_by_name['Result']
 Result = enum_type_wrapper.EnumTypeWrapper(_RESULT)
@@ -30,20 +30,37 @@ withdraw = 2
 query = 3
 
 
-_REQUEST = DESCRIPTOR.message_types_by_name['Request']
+_WITHDRAWREQUEST = DESCRIPTOR.message_types_by_name['WithdrawRequest']
+_DEPOSITREQUEST = DESCRIPTOR.message_types_by_name['DepositRequest']
+_QUERYREQUEST = DESCRIPTOR.message_types_by_name['QueryRequest']
 _WITHDRAWPROPOGATEREQUEST = DESCRIPTOR.message_types_by_name['WithdrawPropogateRequest']
 _DEPOSITPROPOGATEREQUEST = DESCRIPTOR.message_types_by_name['DepositPropogateRequest']
 _EVENTREQUEST = DESCRIPTOR.message_types_by_name['EventRequest']
-_UPDATETRANSACTIONRESPONSE = DESCRIPTOR.message_types_by_name['UpdateTransactionResponse']
-_READTRANSACTIONRESPONSE = DESCRIPTOR.message_types_by_name['ReadTransactionResponse']
+_WITHDRAWRESPONSE = DESCRIPTOR.message_types_by_name['WithdrawResponse']
+_DEPOSITRESPONSE = DESCRIPTOR.message_types_by_name['DepositResponse']
+_QUERYRESPONSE = DESCRIPTOR.message_types_by_name['QueryResponse']
 _WITHDRAWPROPOGATERESPONSE = DESCRIPTOR.message_types_by_name['WithdrawPropogateResponse']
 _DEPOSITPROPOGATERESPONSE = DESCRIPTOR.message_types_by_name['DepositPropogateResponse']
-Request = _reflection.GeneratedProtocolMessageType('Request', (_message.Message,), {
-  'DESCRIPTOR' : _REQUEST,
+WithdrawRequest = _reflection.GeneratedProtocolMessageType('WithdrawRequest', (_message.Message,), {
+  'DESCRIPTOR' : _WITHDRAWREQUEST,
   '__module__' : 'service_pb2'
-  # @@protoc_insertion_point(class_scope:Request)
+  # @@protoc_insertion_point(class_scope:WithdrawRequest)
   })
-_sym_db.RegisterMessage(Request)
+_sym_db.RegisterMessage(WithdrawRequest)
+
+DepositRequest = _reflection.GeneratedProtocolMessageType('DepositRequest', (_message.Message,), {
+  'DESCRIPTOR' : _DEPOSITREQUEST,
+  '__module__' : 'service_pb2'
+  # @@protoc_insertion_point(class_scope:DepositRequest)
+  })
+_sym_db.RegisterMessage(DepositRequest)
+
+QueryRequest = _reflection.GeneratedProtocolMessageType('QueryRequest', (_message.Message,), {
+  'DESCRIPTOR' : _QUERYREQUEST,
+  '__module__' : 'service_pb2'
+  # @@protoc_insertion_point(class_scope:QueryRequest)
+  })
+_sym_db.RegisterMessage(QueryRequest)
 
 WithdrawPropogateRequest = _reflection.GeneratedProtocolMessageType('WithdrawPropogateRequest', (_message.Message,), {
   'DESCRIPTOR' : _WITHDRAWPROPOGATEREQUEST,
@@ -66,19 +83,26 @@ EventRequest = _reflection.GeneratedProtocolMessageType('EventRequest', (_messag
   })
 _sym_db.RegisterMessage(EventRequest)
 
-UpdateTransactionResponse = _reflection.GeneratedProtocolMessageType('UpdateTransactionResponse', (_message.Message,), {
-  'DESCRIPTOR' : _UPDATETRANSACTIONRESPONSE,
+WithdrawResponse = _reflection.GeneratedProtocolMessageType('WithdrawResponse', (_message.Message,), {
+  'DESCRIPTOR' : _WITHDRAWRESPONSE,
   '__module__' : 'service_pb2'
-  # @@protoc_insertion_point(class_scope:UpdateTransactionResponse)
+  # @@protoc_insertion_point(class_scope:WithdrawResponse)
   })
-_sym_db.RegisterMessage(UpdateTransactionResponse)
+_sym_db.RegisterMessage(WithdrawResponse)
 
-ReadTransactionResponse = _reflection.GeneratedProtocolMessageType('ReadTransactionResponse', (_message.Message,), {
-  'DESCRIPTOR' : _READTRANSACTIONRESPONSE,
+DepositResponse = _reflection.GeneratedProtocolMessageType('DepositResponse', (_message.Message,), {
+  'DESCRIPTOR' : _DEPOSITRESPONSE,
   '__module__' : 'service_pb2'
-  # @@protoc_insertion_point(class_scope:ReadTransactionResponse)
+  # @@protoc_insertion_point(class_scope:DepositResponse)
   })
-_sym_db.RegisterMessage(ReadTransactionResponse)
+_sym_db.RegisterMessage(DepositResponse)
+
+QueryResponse = _reflection.GeneratedProtocolMessageType('QueryResponse', (_message.Message,), {
+  'DESCRIPTOR' : _QUERYRESPONSE,
+  '__module__' : 'service_pb2'
+  # @@protoc_insertion_point(class_scope:QueryResponse)
+  })
+_sym_db.RegisterMessage(QueryResponse)
 
 WithdrawPropogateResponse = _reflection.GeneratedProtocolMessageType('WithdrawPropogateResponse', (_message.Message,), {
   'DESCRIPTOR' : _WITHDRAWPROPOGATERESPONSE,
@@ -98,26 +122,32 @@ _BRANCH = DESCRIPTOR.services_by_name['Branch']
 if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
-  _RESULT._serialized_start=547
-  _RESULT._serialized_end=593
-  _INTERFACE._serialized_start=595
-  _INTERFACE._serialized_end=659
-  _REQUEST._serialized_start=17
-  _REQUEST._serialized_end=68
-  _WITHDRAWPROPOGATEREQUEST._serialized_start=70
-  _WITHDRAWPROPOGATEREQUEST._serialized_end=113
-  _DEPOSITPROPOGATEREQUEST._serialized_start=115
-  _DEPOSITPROPOGATEREQUEST._serialized_end=157
-  _EVENTREQUEST._serialized_start=159
-  _EVENTREQUEST._serialized_end=231
-  _UPDATETRANSACTIONRESPONSE._serialized_start=233
-  _UPDATETRANSACTIONRESPONSE._serialized_end=328
-  _READTRANSACTIONRESPONSE._serialized_start=330
-  _READTRANSACTIONRESPONSE._serialized_end=438
-  _WITHDRAWPROPOGATERESPONSE._serialized_start=440
-  _WITHDRAWPROPOGATERESPONSE._serialized_end=492
-  _DEPOSITPROPOGATERESPONSE._serialized_start=494
-  _DEPOSITPROPOGATERESPONSE._serialized_end=545
-  _BRANCH._serialized_start=662
-  _BRANCH._serialized_end=932
+  _RESULT._serialized_start=741
+  _RESULT._serialized_end=787
+  _INTERFACE._serialized_start=789
+  _INTERFACE._serialized_end=853
+  _WITHDRAWREQUEST._serialized_start=17
+  _WITHDRAWREQUEST._serialized_end=76
+  _DEPOSITREQUEST._serialized_start=78
+  _DEPOSITREQUEST._serialized_end=136
+  _QUERYREQUEST._serialized_start=138
+  _QUERYREQUEST._serialized_end=194
+  _WITHDRAWPROPOGATEREQUEST._serialized_start=196
+  _WITHDRAWPROPOGATEREQUEST._serialized_end=239
+  _DEPOSITPROPOGATEREQUEST._serialized_start=241
+  _DEPOSITPROPOGATEREQUEST._serialized_end=283
+  _EVENTREQUEST._serialized_start=285
+  _EVENTREQUEST._serialized_end=357
+  _WITHDRAWRESPONSE._serialized_start=359
+  _WITHDRAWRESPONSE._serialized_end=445
+  _DEPOSITRESPONSE._serialized_start=447
+  _DEPOSITRESPONSE._serialized_end=532
+  _QUERYRESPONSE._serialized_start=534
+  _QUERYRESPONSE._serialized_end=632
+  _WITHDRAWPROPOGATERESPONSE._serialized_start=634
+  _WITHDRAWPROPOGATERESPONSE._serialized_end=686
+  _DEPOSITPROPOGATERESPONSE._serialized_start=688
+  _DEPOSITPROPOGATERESPONSE._serialized_end=739
+  _BRANCH._serialized_start=856
+  _BRANCH._serialized_end=1146
 # @@protoc_insertion_point(module_scope)

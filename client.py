@@ -36,11 +36,17 @@ for customer_input_item in customer_input_items:
 #Invoke withdraw and deposit interface
 for customer in customers:
     for event in customer.events:
-        if event.get('interface') != 'query':
-            print("---customer events non-query ---", customer.events)
-            customer_process = Process(target=customer.executeUpdateEvents(),)
+        if event.get('interface') == 'deposit':
+            print("---customer events deposit ---", customer.events)
+            customer_process = Process(target=customer.executeDepositEvents(),)
             customer_processes.append(customer_process)
             customer_process.start()
+
+        elif event.get('interface') == 'withdraw':
+            print("---customer events withdraw ---", customer.events)
+            customer_process = Process(target=customer.executeWithdrawEvents(),)
+            customer_processes.append(customer_process)
+            customer_process.start()    
 
 # sleep for 3 seconds before querying
 time.sleep(3)
@@ -50,7 +56,7 @@ for customer in customers:
     for event in customer.events:
         if event.get('interface') == 'query':
             print("---customer events for query ---", customer.events)
-            customer_process = Process(target=customer.executeReadEvents(),)
+            customer_process = Process(target=customer.executeQueryEvents(),)
             customer_processes.append(customer_process)
             customer_process.start()
 

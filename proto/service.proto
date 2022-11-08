@@ -2,14 +2,25 @@ syntax = "proto3";
 
 service Branch {
     // MsgDelivery Service 
-    rpc UpdateTransaction(Request) returns (UpdateTransactionResponse);
-    rpc ReadTransaction(Request) returns (ReadTransactionResponse);
+    rpc Deposit(DepositRequest) returns (DepositResponse);
+    rpc Withdraw(WithdrawRequest) returns (WithdrawRequest);
+    rpc Query(QueryRequest) returns (QueryResponse);
     rpc WithdrawPropogate(WithdrawPropogateRequest) returns (WithdrawPropogateResponse);
     rpc DepositPropogate(DepositPropogateRequest) returns (DepositPropogateRequest);
 }
 
-// API Request
-message Request {
+// API Requests
+message WithdrawRequest {
+    int32 id = 1;
+    EventRequest event = 3;
+}
+
+message DepositRequest {
+    int32 id = 1;
+    EventRequest event = 3;
+}
+
+message QueryRequest {
     int32 id = 1;
     EventRequest event = 3;
 }
@@ -29,13 +40,19 @@ message EventRequest {
 }
 
 //API Response
-message UpdateTransactionResponse {
+message WithdrawResponse {
     int32 id = 1;
     Interface interface = 2;
     Result result = 3;
 }
 
-message ReadTransactionResponse {
+message DepositResponse {
+    int32 id = 1;
+    Interface interface = 2;
+    Result result = 3;
+}
+
+message QueryResponse {
     int32 id = 1;
     Interface interface = 2;
     int32 money = 3;

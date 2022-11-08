@@ -44,39 +44,45 @@ class BranchServicer(service_pb2_grpc.BranchServicer):
           channel.close()             
 
     # TODO: students are expected to process requests from both Client and Branch
-    def UpdateTransaction(self,request, context):
+    def Withdraw(self,request, context):
        
         event = request.event
-        output = service_pb2.UpdateTransactionResponse()
-        if event.interface == 1:
-            print("executing UpdateTransaction for..", request.event)
-            output.id = self.id
-            self.balance = self.balance + event.money
-            output.result = 1
-            output.interface = event.interface
-         #   print("deposit - customer id: ", self.id, "balance: ", self.balance)
-            print("Response from server UpdateTransaction:", output)
-            self.propogate_deposit()
-        elif event.interface == 2:
-            print("executing UpdateTransaction for..", request.event)
+        output = service_pb2.WithdrawResponse()
+        if event.interface == 2:
+            print("executing event..", request.event)
             output.id = self.id
             self.balance = self.balance - event.money
             output.result = 1
             output.interface = event.interface
           #  print("withdraw - customer id: ", self.id, "balance: ", self.balance)
-            print("Response from server UpdateTransaction:", output)
+            print("Response from server WithdrawResponse:", output)
             self.propogate_withdraw()
         return output
 
-    def ReadTransaction(self, request, context):
-        print("executing ReadTransaction for..", request.event)
-        output = service_pb2.ReadTransactionResponse()
+    def Deposit(self,request, context):
+       
+        event = request.event
+        output = service_pb2.DepositResponse()
+        if event.interface == 1:
+            print("executing event..", request.event)
+            output.id = self.id
+            self.balance = self.balance + event.money
+            output.result = 1
+            output.interface = event.interface
+         #   print("deposit - customer id: ", self.id, "balance: ", self.balance)
+            print("Response from server DepositResponse:", output)
+            self.propogate_deposit()
+        return output    
+
+    def Query(self, request, context):
+        print("executing interface..", request.event)
+        output = service_pb2.QueryResponse()
         output.money = self.balance  
        # print("query - customer id: ", self.id, "balance: ", self.balance)
         output.id = self.id
         output.result = 1
         output.interface = 3
-        print("Response from server ReadTransaction:", output)
+        print("Response from server Query:", output)
         return output
 
     def WithdrawPropogate(self, request, context):
