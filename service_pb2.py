@@ -15,7 +15,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\rservice.proto\"3\n\x07Request\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x1c\n\x05\x65vent\x18\x03 \x01(\x0b\x32\r.EventRequest\")\n\x16PropogateBranchRequest\x12\x0f\n\x07\x62\x61lance\x18\x01 \x01(\x05\"H\n\x0c\x45ventRequest\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x1d\n\tinterface\x18\x02 \x01(\x0e\x32\n.Interface\x12\r\n\x05money\x18\x03 \x01(\x05\"_\n\x19UpdateTransactionResponse\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x1d\n\tinterface\x18\x02 \x01(\x0e\x32\n.Interface\x12\x17\n\x06result\x18\x03 \x01(\x0e\x32\x07.Result\"l\n\x17ReadTransactionResponse\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x1d\n\tinterface\x18\x02 \x01(\x0e\x32\n.Interface\x12\r\n\x05money\x18\x03 \x01(\x05\x12\x17\n\x06result\x18\x04 \x01(\x0e\x32\x07.Result\"2\n\x17PropogateBranchResponse\x12\x17\n\x06result\x18\x01 \x01(\x0e\x32\x07.Result*.\n\x06Result\x12\n\n\x06uknown\x10\x00\x12\x0b\n\x07success\x10\x01\x12\x0b\n\x07\x66\x61ilure\x10\x02*@\n\tInterface\x12\r\n\tundefined\x10\x00\x12\x0b\n\x07\x64\x65posit\x10\x01\x12\x0c\n\x08withdraw\x10\x02\x12\t\n\x05query\x10\x03\x32\xc0\x01\n\x06\x42ranch\x12\x39\n\x11UpdateTransaction\x12\x08.Request\x1a\x1a.UpdateTransactionResponse\x12\x35\n\x0fReadTransaction\x12\x08.Request\x1a\x18.ReadTransactionResponse\x12\x44\n\x0fPropogateBranch\x12\x17.PropogateBranchRequest\x1a\x18.PropogateBranchResponseb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\rservice.proto\"3\n\x07Request\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x1c\n\x05\x65vent\x18\x03 \x01(\x0b\x32\r.EventRequest\"+\n\x18WithdrawPropogateRequest\x12\x0f\n\x07\x62\x61lance\x18\x01 \x01(\x05\"*\n\x17\x44\x65positPropogateRequest\x12\x0f\n\x07\x62\x61lance\x18\x01 \x01(\x05\"H\n\x0c\x45ventRequest\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x1d\n\tinterface\x18\x02 \x01(\x0e\x32\n.Interface\x12\r\n\x05money\x18\x03 \x01(\x05\"_\n\x19UpdateTransactionResponse\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x1d\n\tinterface\x18\x02 \x01(\x0e\x32\n.Interface\x12\x17\n\x06result\x18\x03 \x01(\x0e\x32\x07.Result\"l\n\x17ReadTransactionResponse\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x1d\n\tinterface\x18\x02 \x01(\x0e\x32\n.Interface\x12\r\n\x05money\x18\x03 \x01(\x05\x12\x17\n\x06result\x18\x04 \x01(\x0e\x32\x07.Result\"4\n\x19WithdrawPropogateResponse\x12\x17\n\x06result\x18\x01 \x01(\x0e\x32\x07.Result\"3\n\x18\x44\x65positPropogateResponse\x12\x17\n\x06result\x18\x01 \x01(\x0e\x32\x07.Result*.\n\x06Result\x12\n\n\x06uknown\x10\x00\x12\x0b\n\x07success\x10\x01\x12\x0b\n\x07\x66\x61ilure\x10\x02*@\n\tInterface\x12\r\n\tundefined\x10\x00\x12\x0b\n\x07\x64\x65posit\x10\x01\x12\x0c\n\x08withdraw\x10\x02\x12\t\n\x05query\x10\x03\x32\x8e\x02\n\x06\x42ranch\x12\x39\n\x11UpdateTransaction\x12\x08.Request\x1a\x1a.UpdateTransactionResponse\x12\x35\n\x0fReadTransaction\x12\x08.Request\x1a\x18.ReadTransactionResponse\x12J\n\x11WithdrawPropogate\x12\x19.WithdrawPropogateRequest\x1a\x1a.WithdrawPropogateResponse\x12\x46\n\x10\x44\x65positPropogate\x12\x18.DepositPropogateRequest\x1a\x18.DepositPropogateRequestb\x06proto3')
 
 _RESULT = DESCRIPTOR.enum_types_by_name['Result']
 Result = enum_type_wrapper.EnumTypeWrapper(_RESULT)
@@ -31,11 +31,13 @@ query = 3
 
 
 _REQUEST = DESCRIPTOR.message_types_by_name['Request']
-_PROPOGATEBRANCHREQUEST = DESCRIPTOR.message_types_by_name['PropogateBranchRequest']
+_WITHDRAWPROPOGATEREQUEST = DESCRIPTOR.message_types_by_name['WithdrawPropogateRequest']
+_DEPOSITPROPOGATEREQUEST = DESCRIPTOR.message_types_by_name['DepositPropogateRequest']
 _EVENTREQUEST = DESCRIPTOR.message_types_by_name['EventRequest']
 _UPDATETRANSACTIONRESPONSE = DESCRIPTOR.message_types_by_name['UpdateTransactionResponse']
 _READTRANSACTIONRESPONSE = DESCRIPTOR.message_types_by_name['ReadTransactionResponse']
-_PROPOGATEBRANCHRESPONSE = DESCRIPTOR.message_types_by_name['PropogateBranchResponse']
+_WITHDRAWPROPOGATERESPONSE = DESCRIPTOR.message_types_by_name['WithdrawPropogateResponse']
+_DEPOSITPROPOGATERESPONSE = DESCRIPTOR.message_types_by_name['DepositPropogateResponse']
 Request = _reflection.GeneratedProtocolMessageType('Request', (_message.Message,), {
   'DESCRIPTOR' : _REQUEST,
   '__module__' : 'service_pb2'
@@ -43,12 +45,19 @@ Request = _reflection.GeneratedProtocolMessageType('Request', (_message.Message,
   })
 _sym_db.RegisterMessage(Request)
 
-PropogateBranchRequest = _reflection.GeneratedProtocolMessageType('PropogateBranchRequest', (_message.Message,), {
-  'DESCRIPTOR' : _PROPOGATEBRANCHREQUEST,
+WithdrawPropogateRequest = _reflection.GeneratedProtocolMessageType('WithdrawPropogateRequest', (_message.Message,), {
+  'DESCRIPTOR' : _WITHDRAWPROPOGATEREQUEST,
   '__module__' : 'service_pb2'
-  # @@protoc_insertion_point(class_scope:PropogateBranchRequest)
+  # @@protoc_insertion_point(class_scope:WithdrawPropogateRequest)
   })
-_sym_db.RegisterMessage(PropogateBranchRequest)
+_sym_db.RegisterMessage(WithdrawPropogateRequest)
+
+DepositPropogateRequest = _reflection.GeneratedProtocolMessageType('DepositPropogateRequest', (_message.Message,), {
+  'DESCRIPTOR' : _DEPOSITPROPOGATEREQUEST,
+  '__module__' : 'service_pb2'
+  # @@protoc_insertion_point(class_scope:DepositPropogateRequest)
+  })
+_sym_db.RegisterMessage(DepositPropogateRequest)
 
 EventRequest = _reflection.GeneratedProtocolMessageType('EventRequest', (_message.Message,), {
   'DESCRIPTOR' : _EVENTREQUEST,
@@ -71,33 +80,44 @@ ReadTransactionResponse = _reflection.GeneratedProtocolMessageType('ReadTransact
   })
 _sym_db.RegisterMessage(ReadTransactionResponse)
 
-PropogateBranchResponse = _reflection.GeneratedProtocolMessageType('PropogateBranchResponse', (_message.Message,), {
-  'DESCRIPTOR' : _PROPOGATEBRANCHRESPONSE,
+WithdrawPropogateResponse = _reflection.GeneratedProtocolMessageType('WithdrawPropogateResponse', (_message.Message,), {
+  'DESCRIPTOR' : _WITHDRAWPROPOGATERESPONSE,
   '__module__' : 'service_pb2'
-  # @@protoc_insertion_point(class_scope:PropogateBranchResponse)
+  # @@protoc_insertion_point(class_scope:WithdrawPropogateResponse)
   })
-_sym_db.RegisterMessage(PropogateBranchResponse)
+_sym_db.RegisterMessage(WithdrawPropogateResponse)
+
+DepositPropogateResponse = _reflection.GeneratedProtocolMessageType('DepositPropogateResponse', (_message.Message,), {
+  'DESCRIPTOR' : _DEPOSITPROPOGATERESPONSE,
+  '__module__' : 'service_pb2'
+  # @@protoc_insertion_point(class_scope:DepositPropogateResponse)
+  })
+_sym_db.RegisterMessage(DepositPropogateResponse)
 
 _BRANCH = DESCRIPTOR.services_by_name['Branch']
 if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
-  _RESULT._serialized_start=446
-  _RESULT._serialized_end=492
-  _INTERFACE._serialized_start=494
-  _INTERFACE._serialized_end=558
+  _RESULT._serialized_start=547
+  _RESULT._serialized_end=593
+  _INTERFACE._serialized_start=595
+  _INTERFACE._serialized_end=659
   _REQUEST._serialized_start=17
   _REQUEST._serialized_end=68
-  _PROPOGATEBRANCHREQUEST._serialized_start=70
-  _PROPOGATEBRANCHREQUEST._serialized_end=111
-  _EVENTREQUEST._serialized_start=113
-  _EVENTREQUEST._serialized_end=185
-  _UPDATETRANSACTIONRESPONSE._serialized_start=187
-  _UPDATETRANSACTIONRESPONSE._serialized_end=282
-  _READTRANSACTIONRESPONSE._serialized_start=284
-  _READTRANSACTIONRESPONSE._serialized_end=392
-  _PROPOGATEBRANCHRESPONSE._serialized_start=394
-  _PROPOGATEBRANCHRESPONSE._serialized_end=444
-  _BRANCH._serialized_start=561
-  _BRANCH._serialized_end=753
+  _WITHDRAWPROPOGATEREQUEST._serialized_start=70
+  _WITHDRAWPROPOGATEREQUEST._serialized_end=113
+  _DEPOSITPROPOGATEREQUEST._serialized_start=115
+  _DEPOSITPROPOGATEREQUEST._serialized_end=157
+  _EVENTREQUEST._serialized_start=159
+  _EVENTREQUEST._serialized_end=231
+  _UPDATETRANSACTIONRESPONSE._serialized_start=233
+  _UPDATETRANSACTIONRESPONSE._serialized_end=328
+  _READTRANSACTIONRESPONSE._serialized_start=330
+  _READTRANSACTIONRESPONSE._serialized_end=438
+  _WITHDRAWPROPOGATERESPONSE._serialized_start=440
+  _WITHDRAWPROPOGATERESPONSE._serialized_end=492
+  _DEPOSITPROPOGATERESPONSE._serialized_start=494
+  _DEPOSITPROPOGATERESPONSE._serialized_end=545
+  _BRANCH._serialized_start=662
+  _BRANCH._serialized_end=932
 # @@protoc_insertion_point(module_scope)

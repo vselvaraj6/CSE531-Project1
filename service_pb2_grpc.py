@@ -24,10 +24,15 @@ class BranchStub(object):
                 request_serializer=service__pb2.Request.SerializeToString,
                 response_deserializer=service__pb2.ReadTransactionResponse.FromString,
                 )
-        self.PropogateBranch = channel.unary_unary(
-                '/Branch/PropogateBranch',
-                request_serializer=service__pb2.PropogateBranchRequest.SerializeToString,
-                response_deserializer=service__pb2.PropogateBranchResponse.FromString,
+        self.WithdrawPropogate = channel.unary_unary(
+                '/Branch/WithdrawPropogate',
+                request_serializer=service__pb2.WithdrawPropogateRequest.SerializeToString,
+                response_deserializer=service__pb2.WithdrawPropogateResponse.FromString,
+                )
+        self.DepositPropogate = channel.unary_unary(
+                '/Branch/DepositPropogate',
+                request_serializer=service__pb2.DepositPropogateRequest.SerializeToString,
+                response_deserializer=service__pb2.DepositPropogateRequest.FromString,
                 )
 
 
@@ -47,7 +52,13 @@ class BranchServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def PropogateBranch(self, request, context):
+    def WithdrawPropogate(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def DepositPropogate(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -66,10 +77,15 @@ def add_BranchServicer_to_server(servicer, server):
                     request_deserializer=service__pb2.Request.FromString,
                     response_serializer=service__pb2.ReadTransactionResponse.SerializeToString,
             ),
-            'PropogateBranch': grpc.unary_unary_rpc_method_handler(
-                    servicer.PropogateBranch,
-                    request_deserializer=service__pb2.PropogateBranchRequest.FromString,
-                    response_serializer=service__pb2.PropogateBranchResponse.SerializeToString,
+            'WithdrawPropogate': grpc.unary_unary_rpc_method_handler(
+                    servicer.WithdrawPropogate,
+                    request_deserializer=service__pb2.WithdrawPropogateRequest.FromString,
+                    response_serializer=service__pb2.WithdrawPropogateResponse.SerializeToString,
+            ),
+            'DepositPropogate': grpc.unary_unary_rpc_method_handler(
+                    servicer.DepositPropogate,
+                    request_deserializer=service__pb2.DepositPropogateRequest.FromString,
+                    response_serializer=service__pb2.DepositPropogateRequest.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -116,7 +132,7 @@ class Branch(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def PropogateBranch(request,
+    def WithdrawPropogate(request,
             target,
             options=(),
             channel_credentials=None,
@@ -126,8 +142,25 @@ class Branch(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/Branch/PropogateBranch',
-            service__pb2.PropogateBranchRequest.SerializeToString,
-            service__pb2.PropogateBranchResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/Branch/WithdrawPropogate',
+            service__pb2.WithdrawPropogateRequest.SerializeToString,
+            service__pb2.WithdrawPropogateResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def DepositPropogate(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Branch/DepositPropogate',
+            service__pb2.DepositPropogateRequest.SerializeToString,
+            service__pb2.DepositPropogateRequest.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

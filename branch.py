@@ -21,16 +21,27 @@ class BranchServicer(service_pb2_grpc.BranchServicer):
     def __str__(self) -> str:
        return "id: {0}, balance: {1}, branches: {2}".format(self.id,self.balance,self.branches)     
 
-    def propogate_branch(self):
+    def propogate_withdraw(self):
 
         for process in self.branches:
             host = 'localhost:'+str(process)
           #  print('Creating branch stub to connect to ', host)
             with grpc.insecure_channel(host) as channel:
                 self.stub = service_pb2_grpc.BranchStub(channel)
-                request = service_pb2.PropogateBranchRequest(balance=self.balance)
-                response = self.stub.PropogateBranch(request=request)
+                request = service_pb2.WithdrawPropogateRequest(balance=self.balance)
+                response = self.stub.WithdrawPropogate(request=request)
             channel.close()     
+
+    def propogate_deposit(self):
+
+      for process in self.branches:
+          host = 'localhost:'+str(process)
+        #  print('Creating branch stub to connect to ', host)
+          with grpc.insecure_channel(host) as channel:
+              self.stub = service_pb2_grpc.BranchStub(channel)
+              request = service_pb2.DepositPropogateRequest(balance=self.balance)
+              response = self.stub.DepositPropogate(request=request)
+          channel.close()             
 
     # TODO: students are expected to process requests from both Client and Branch
     def UpdateTransaction(self,request, context):
@@ -45,7 +56,7 @@ class BranchServicer(service_pb2_grpc.BranchServicer):
             output.interface = event.interface
          #   print("deposit - customer id: ", self.id, "balance: ", self.balance)
             print("Response from server UpdateTransaction:", output)
-            self.propogate_branch()
+            self.propogate_deposit()
         elif event.interface == 2:
             print("executing UpdateTransaction for..", request.event)
             output.id = self.id
@@ -54,7 +65,7 @@ class BranchServicer(service_pb2_grpc.BranchServicer):
             output.interface = event.interface
           #  print("withdraw - customer id: ", self.id, "balance: ", self.balance)
             print("Response from server UpdateTransaction:", output)
-            self.propogate_branch()
+            self.propogate_withdraw()
         return output
 
     def ReadTransaction(self, request, context):
@@ -68,10 +79,18 @@ class BranchServicer(service_pb2_grpc.BranchServicer):
         print("Response from server ReadTransaction:", output)
         return output
 
-    def PropogateBranch(self, request, context):
+    def WithdrawPropogate(self, request, context):
         self.balance = request.balance 
       #  print("propogate balance to branch id: ", self.id , "successful!")   
-        output = service_pb2.PropogateBranchResponse()
+        output = service_pb2.WithdrawPropogateResponse()
         output.result = 1
       #  print("Response from server PropogateBalance:", output)
         return output   
+
+    def DepositPropogate(self, request, context):
+        self.balance = request.balance 
+      #  print("propogate balance to branch id: ", self.id , "successful!")   
+        output = service_pb2.DepositPropogateResponse()
+        output.result = 1
+      #  print("Response from server PropogateBalance:", output)
+        return output       

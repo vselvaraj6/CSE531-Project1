@@ -4,7 +4,8 @@ service Branch {
     // MsgDelivery Service 
     rpc UpdateTransaction(Request) returns (UpdateTransactionResponse);
     rpc ReadTransaction(Request) returns (ReadTransactionResponse);
-    rpc PropogateBranch(PropogateBranchRequest) returns (PropogateBranchResponse);
+    rpc WithdrawPropogate(WithdrawPropogateRequest) returns (WithdrawPropogateResponse);
+    rpc DepositPropogate(DepositPropogateRequest) returns (DepositPropogateRequest);
 }
 
 // API Request
@@ -13,7 +14,11 @@ message Request {
     EventRequest event = 3;
 }
 
-message PropogateBranchRequest {
+message WithdrawPropogateRequest {
+    int32 balance = 1;
+}
+
+message DepositPropogateRequest {
     int32 balance = 1;
 }
 
@@ -37,7 +42,11 @@ message ReadTransactionResponse {
     Result result = 4;
 }
 
-message PropogateBranchResponse{
+message WithdrawPropogateResponse{
+    Result result = 1;
+}
+
+message DepositPropogateResponse{
     Result result = 1;
 }
 
